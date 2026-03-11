@@ -194,9 +194,9 @@
     <div class="dl-card">
       <div class="dl-icon">🪟</div>
       <div class="dl-platform">Windows</div>
-      <div class="dl-note">Windows 10 / 11 (64-bit)<br />Installer (.msi) · ~35 MB</div>
+      <div class="dl-note">Windows 10 / 11 (64-bit)<br />Installer (.exe) · ~3 MB</div>
       <a class="dl-btn primary"
-         href="https://github.com/eodi-me/app/releases/latest/download/eodi-me_x64_en-US.msi"
+         href="https://github.com/eodi-me/app/releases/latest"
          id="btn-win">
         ⬇ Download for Windows
       </a>
@@ -244,12 +244,35 @@
 </footer>
 
 <script>
-  // Auto-detect OS and highlight the matching download button
+  // Fetch latest release from GitHub API and set direct download link
   (function () {
-    const ua = navigator.userAgent;
-    const isWin = /Windows/.test(ua);
-    if (!isWin) {
-      const winBtn = document.getElementById('btn-win');
+    fetch('https://api.github.com/repos/eodi-me/app/releases/latest')
+      .then(function(r) { return r.json(); })
+      .then(function(release) {
+        var btn = document.getElementById('btn-win');
+        if (!btn || !release.assets) return;
+        // Prefer NSIS setup.exe, fallback to MSI
+        var asset = release.assets.find(function(a) { return a.name.endsWith('-setup.exe'); })
+                 || release.assets.find(function(a) { return a.name.endsWith('.msi'); });
+        if (asset) {
+          btn.href = asset.browser_download_url;
+          // Update size label
+          var note = btn.closest('.dl-card').querySelector('.dl-note');
+          if (note) {
+            var mb = (asset.size / 1024 / 1024).toFixed(1);
+            note.innerHTML = 'Windows 10 / 11 (64-bit)<br />Installer (.exe) &middot; ~' + mb + ' MB';
+          }
+        }
+        // Update release version badge if element exists
+        var ver = document.getElementById('release-version');
+        if (ver && release.tag_name) ver.textContent = release.tag_name;
+      })
+      .catch(function() { /* fallback: button already points to /releases/latest */ });
+
+    // Auto-detect OS
+    var ua = navigator.userAgent;
+    if (!/Windows/.test(ua)) {
+      var winBtn = document.getElementById('btn-win');
       if (winBtn) winBtn.classList.remove('primary');
     }
   })();
