@@ -586,9 +586,12 @@
     <p class="section-sub" style="margin: 0 auto 28px;">No credit card required to download. All paid plans are activated with a license key — no account creation needed.</p>
     <!-- Toggle (JS-free default: monthly shown) -->
     <div class="pricing-toggle" id="billing-toggle">
-      <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true">Monthly</button>
-      <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')" aria-pressed="false">
+      <button class="toggle-btn" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="false">Monthly</button>
+      <button class="toggle-btn active" id="btn-annual" onclick="setBilling('annual')" aria-pressed="true">
         Annual &nbsp;<span class="save-badge">Save ~35%</span>
+      </button>
+      <button class="toggle-btn" id="btn-lifetime" onclick="setBilling('lifetime')" aria-pressed="false">
+        Lifetime &nbsp;<span class="save-badge" style="background:#a855f7;">One-time</span>
       </button>
     </div>
   </div>
@@ -609,22 +612,22 @@
     <!-- Personal -->
     <div class="plan-card">
       <div class="plan-name" style="color: #6496ff">Personal</div>
-      <div class="plan-price" id="price-personal">$4.99</div>
-      <div class="plan-period" id="period-personal">/month</div>
+      <div class="plan-price" id="price-personal">$39/yr</div>
+      <div class="plan-period" id="period-personal">per year</div>
       <ul class="plan-features">
         <li>Full vibe report &amp; radar</li>
         <li>Find neighborhoods with the same vibe</li>
         <li>Preference-based discovery</li>
         <li>Save vibe presets</li>
       </ul>
-      <a href="https://buy.polar.sh/polar_cl_lPOM89NvwIAS1oN0TdygEdcX1NhOPe4c7nlil1qkW33" id="buy-personal" class="plan-btn" target="_blank" rel="noopener">Get Personal</a>
+      <a href="https://buy.polar.sh/polar_cl_GHRt5bsqIcVmg9B7G9eTpb6oOythas7Cmcfrq2OpUyt" id="buy-personal" class="plan-btn" target="_blank" rel="noopener">Get Personal</a>
     </div>
     <!-- Solo Biz -->
     <div class="plan-card highlight">
       <div class="plan-popular">For Franchise &amp; Small Business</div>
       <div class="plan-name" style="color: #34d399">Solo Biz</div>
-      <div class="plan-price" id="price-solobiz">$9.99</div>
-      <div class="plan-period" id="period-solobiz">/month</div>
+      <div class="plan-price" id="price-solobiz">$79/yr</div>
+      <div class="plan-period" id="period-solobiz">per year</div>
       <ul class="plan-features">
         <li>Everything in Personal</li>
         <li>📍 Import custom locations &amp; POI data</li>
@@ -632,13 +635,13 @@
         <li>📊 Export results (CSV / PDF)</li>
         <li>🖥️ Self-hosted option available</li>
       </ul>
-      <a href="https://buy.polar.sh/polar_cl_jLhdrMsZDq7bn2JeVkRtqDC8ErnRdMNQCK5NV3XqwoU" id="buy-solobiz" class="plan-btn primary" target="_blank" rel="noopener">Get Solo Biz</a>
+      <a href="https://buy.polar.sh/polar_cl_bLsPkr2gZ8B8sixUoONlRarwzzjQ1yzxp1BkJ08cKO3" id="buy-solobiz" class="plan-btn primary" target="_blank" rel="noopener">Get Solo Biz</a>
     </div>
     <!-- Business -->
     <div class="plan-card">
       <div class="plan-name" style="color: #f59e0b">Business</div>
-      <div class="plan-price" id="price-business">$49</div>
-      <div class="plan-period" id="period-business">/month</div>
+      <div class="plan-price" id="price-business">$390/yr</div>
+      <div class="plan-period" id="period-business">per year</div>
       <ul class="plan-features">
         <li>Everything in Solo Biz</li>
         <li>Batch vibe scoring for multiple locations</li>
@@ -646,7 +649,7 @@
         <li>Self-hosted Docker</li>
         <li>Local REST API</li>
       </ul>
-      <a href="https://buy.polar.sh/polar_cl_ogOZBmf4o7rvVB8L1o5WoPd0euuuvilkiXy7q1DEDYl" id="buy-business" class="plan-btn" target="_blank" rel="noopener">Get Business</a>
+      <a href="https://buy.polar.sh/polar_cl_ow7rhQX1yjA5GEuTgq4McH8XKpQgkO3qTWCHF3fzejz" id="buy-business" class="plan-btn" target="_blank" rel="noopener">Get Business</a>
     </div>
     <!-- Enterprise -->
     <div class="plan-card">
@@ -663,7 +666,7 @@
       <a href="mailto:hello@eodi.me?subject=Enterprise%20Inquiry" class="plan-btn">Contact Us</a>
     </div>
   </div>
-  <p style="text-align: center; font-size: 12px; color: var(--text3); margin-top: 28px;">
+  <p id="pricing-note" style="text-align: center; font-size: 12px; color: var(--text3); margin-top: 28px;">
     All plans include the free tier features. Annual billing saves approximately 35% vs. monthly.
   </p>
 </section>
@@ -712,30 +715,43 @@
   // Polar checkout links keyed by plan and billing cycle
   const buyLinks = {
     personal: {
-      monthly: 'https://buy.polar.sh/polar_cl_lPOM89NvwIAS1oN0TdygEdcX1NhOPe4c7nlil1qkW33',
-      annual:  'https://buy.polar.sh/polar_cl_GHRt5bsqIcVmg9B7G9eTpb6oOythas7Cmcfrq2OpUyt',
+      monthly:  'https://buy.polar.sh/polar_cl_lPOM89NvwIAS1oN0TdygEdcX1NhOPe4c7nlil1qkW33',
+      annual:   'https://buy.polar.sh/polar_cl_GHRt5bsqIcVmg9B7G9eTpb6oOythas7Cmcfrq2OpUyt',
+      lifetime: 'mailto:hello@eodi.me?subject=Lifetime%20License%20-%20Personal',
     },
     solobiz: {
-      monthly: 'https://buy.polar.sh/polar_cl_jLhdrMsZDq7bn2JeVkRtqDC8ErnRdMNQCK5NV3XqwoU',
-      annual:  'https://buy.polar.sh/polar_cl_bLsPkr2gZ8B8sixUoONlRarwzzjQ1yzxp1BkJ08cKO3',
+      monthly:  'https://buy.polar.sh/polar_cl_jLhdrMsZDq7bn2JeVkRtqDC8ErnRdMNQCK5NV3XqwoU',
+      annual:   'https://buy.polar.sh/polar_cl_bLsPkr2gZ8B8sixUoONlRarwzzjQ1yzxp1BkJ08cKO3',
+      lifetime: 'mailto:hello@eodi.me?subject=Lifetime%20License%20-%20Solo%20Biz',
     },
     business: {
-      monthly: 'https://buy.polar.sh/polar_cl_ogOZBmf4o7rvVB8L1o5WoPd0euuuvilkiXy7q1DEDYl',
-      annual:  'https://buy.polar.sh/polar_cl_ow7rhQX1yjA5GEuTgq4McH8XKpQgkO3qTWCHF3fzejz',
+      monthly:  'https://buy.polar.sh/polar_cl_ogOZBmf4o7rvVB8L1o5WoPd0euuuvilkiXy7q1DEDYl',
+      annual:   'https://buy.polar.sh/polar_cl_ow7rhQX1yjA5GEuTgq4McH8XKpQgkO3qTWCHF3fzejz',
+      lifetime: 'mailto:hello@eodi.me?subject=Lifetime%20License%20-%20Business',
     },
   };
 
   const prices = {
-    personal:   { monthly: '$4.99', annual: '$39/yr'   },
-    solobiz:    { monthly: '$9.99', annual: '$79/yr'   },
-    business:   { monthly: '$49',   annual: '$390/yr'  },
-    enterprise: { monthly: 'Contact Us', annual: 'Contact Us' },
+    personal:   { monthly: '$4.99', annual: '$39/yr',  lifetime: '$89'  },
+    solobiz:    { monthly: '$9.99', annual: '$79/yr',  lifetime: '$179' },
+    business:   { monthly: '$49',   annual: '$390/yr', lifetime: '$890' },
+    enterprise: { monthly: 'Contact Us', annual: 'Contact Us', lifetime: 'Contact Us' },
   };
   const periods = {
-    personal:   { monthly: '/month', annual: 'per year' },
-    solobiz:    { monthly: '/month', annual: 'per year' },
-    business:   { monthly: '/month', annual: 'per year' },
-    enterprise: { monthly: 'custom pricing', annual: 'custom pricing' },
+    personal:   { monthly: '/month', annual: 'per year', lifetime: 'one-time' },
+    solobiz:    { monthly: '/month', annual: 'per year', lifetime: 'one-time' },
+    business:   { monthly: '/month', annual: 'per year', lifetime: 'one-time' },
+    enterprise: { monthly: 'custom pricing', annual: 'custom pricing', lifetime: 'custom pricing' },
+  };
+  const btnLabels = {
+    personal: { monthly: 'Get Personal', annual: 'Get Personal', lifetime: 'Buy Lifetime' },
+    solobiz:  { monthly: 'Get Solo Biz', annual: 'Get Solo Biz', lifetime: 'Buy Lifetime' },
+    business: { monthly: 'Get Business', annual: 'Get Business', lifetime: 'Buy Lifetime' },
+  };
+  const footerNote = {
+    monthly:  'All plans include the free tier features. Annual billing saves approximately 35% vs. monthly.',
+    annual:   'All plans include the free tier features. Annual billing saves approximately 35% vs. monthly.',
+    lifetime: 'Lifetime licenses never expire — one payment, use forever. Includes all future updates for your tier.',
   };
 
   let billingDebounce = null;
@@ -743,14 +759,14 @@
     if (billingDebounce) return;
     billingDebounce = setTimeout(function() { billingDebounce = null; }, 200);
 
-    var btnMonthly = document.getElementById('btn-monthly');
-    var btnAnnual  = document.getElementById('btn-annual');
-    btnMonthly.className = 'toggle-btn' + (cycle === 'monthly' ? ' active' : '');
-    btnAnnual.className  = 'toggle-btn' + (cycle === 'annual'  ? ' active' : '');
-    btnMonthly.setAttribute('aria-pressed', cycle === 'monthly' ? 'true' : 'false');
-    btnAnnual.setAttribute('aria-pressed',  cycle === 'annual'  ? 'true' : 'false');
+    ['monthly','annual','lifetime'].forEach(function(c) {
+      var btn = document.getElementById('btn-' + c);
+      if (!btn) return;
+      btn.className = 'toggle-btn' + (c === cycle ? ' active' : '');
+      btn.setAttribute('aria-pressed', c === cycle ? 'true' : 'false');
+    });
 
-    // Update prices
+    // Update prices & periods
     for (var key in prices) {
       var priceEl  = document.getElementById('price-'  + key);
       var periodEl = document.getElementById('period-' + key);
@@ -758,12 +774,24 @@
       if (periodEl) periodEl.textContent = periods[key][cycle];
     }
 
-    // Update buy button hrefs
+    // Update buy button hrefs & labels
     for (var plan in buyLinks) {
       var buyBtn = document.getElementById('buy-' + plan);
-      if (buyBtn) buyBtn.href = buyLinks[plan][cycle];
+      if (!buyBtn) continue;
+      buyBtn.href = buyLinks[plan][cycle];
+      if (cycle !== 'enterprise') {
+        buyBtn.textContent = btnLabels[plan] ? btnLabels[plan][cycle] : buyBtn.textContent;
+      }
+      buyBtn.target = buyLinks[plan][cycle].startsWith('mailto') ? '' : '_blank';
     }
+
+    // Update footer note
+    var noteEl = document.getElementById('pricing-note');
+    if (noteEl) noteEl.textContent = footerNote[cycle];
   }
+
+  // Default to annual billing
+  document.addEventListener('DOMContentLoaded', function() { setBilling('annual'); });
 </script>
 
 </body>
