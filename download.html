@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Download eodi.me</title>
-  <meta name="description" content="Download eodi.me — offline neighborhood analysis desktop app for Windows and macOS." />
+  <meta name="description" content="Download eodi.me — offline neighborhood analysis desktop app for Windows." />
   <link rel="canonical" href="https://eodi.me/download" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
@@ -80,7 +80,7 @@
     .dl-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px; width: 100%; max-width: 680px;
+      gap: 16px; width: 100%; max-width: 520px;
       margin-bottom: 48px;
     }
 
@@ -174,7 +174,7 @@
   <div class="nav-links">
     <a href="/#features">Features</a>
     <a href="/#pricing">Pricing</a>
-    <a href="mailto:support@eodi.me">Support</a>
+    <a href="mailto:hello@eodi.me">Support</a>
   </div>
 </nav>
 
@@ -196,40 +196,27 @@
       <div class="dl-platform">Windows</div>
       <div class="dl-note">Windows 10 / 11 (64-bit)<br />Installer (.msi) · ~35 MB</div>
       <a class="dl-btn primary"
-         href="https://github.com/pugori/eodi-me/releases/latest/download/eodi-me_x64_en-US.msi"
+         href="https://github.com/eodi-me/app/releases/latest/download/eodi-me_x64_en-US.msi"
          id="btn-win">
         ⬇ Download for Windows
-      </a>
-    </div>
-
-    <!-- macOS -->
-    <div class="dl-card">
-      <div class="dl-icon">🍎</div>
-      <div class="dl-platform">macOS</div>
-      <div class="dl-note">macOS 12+ · Apple Silicon &amp; Intel<br />Disk image (.dmg) · ~40 MB</div>
-      <a class="dl-btn"
-         href="https://github.com/pugori/eodi-me/releases/latest/download/eodi-me_universal.dmg"
-         id="btn-mac">
-        ⬇ Download for macOS
       </a>
     </div>
   </div>
 
   <div class="release-link">
     <span>All releases &amp; changelogs:</span>
-    <a href="https://github.com/pugori/eodi-me/releases" target="_blank" rel="noopener">
-      github.com/pugori/eodi-me/releases ↗
+    <a href="https://github.com/eodi-me/app/releases" target="_blank" rel="noopener">
+      github.com/eodi-me/app/releases ↗
     </a>
   </div>
 
   <div class="checksum-note">
     <strong>Security note:</strong> SHA-256 checksums are published alongside each release on GitHub.
-    Verify your download before running: <code>certutil -hashfile eodi-me.msi SHA256</code> (Windows) or
-    <code>shasum -a 256 eodi-me.dmg</code> (macOS).
+    Verify your download before running: <code>certutil -hashfile eodi-me.msi SHA256</code> (Windows).
   </div>
 
   <div class="reqs">
-    <div class="req-card">
+    <div class="req-card" style="grid-column: 1 / -1;">
       <h3>🪟 Windows requirements</h3>
       <ul>
         <li>Windows 10 version 1903 or later (64-bit)</li>
@@ -238,15 +225,10 @@
         <li>WebView2 Runtime (installed automatically)</li>
       </ul>
     </div>
-    <div class="req-card">
-      <h3>🍎 macOS requirements</h3>
-      <ul>
-        <li>macOS 12 Monterey or later</li>
-        <li>Apple Silicon (M1+) or Intel x86-64</li>
-        <li>4 GB RAM minimum, 8 GB recommended</li>
-        <li>500 MB free disk space (+ ~2 GB for data)</li>
-      </ul>
-    </div>
+  </div>
+
+  <div style="margin-top: 24px; padding: 14px 20px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; max-width: 520px; width: 100%; font-size: 13px; color: var(--text2); text-align: center;">
+    🍎 <strong style="color: var(--text);">macOS</strong> — Coming Soon
   </div>
 </main>
 
@@ -256,7 +238,7 @@
     <a href="/#pricing">Pricing</a> &nbsp;·&nbsp;
     <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms</a> &nbsp;·&nbsp;
-    <a href="mailto:support@eodi.me">Support</a>
+    <a href="mailto:hello@eodi.me">Support</a>
   </p>
   <p style="margin-top: 8px;">© 2026 eodi.me</p>
 </footer>
@@ -265,17 +247,8 @@
   // Auto-detect OS and highlight the matching download button
   (function () {
     const ua = navigator.userAgent;
-    const isMac = /Mac OS X/.test(ua) && !/iPhone|iPad/.test(ua);
     const isWin = /Windows/.test(ua);
-
-    if (isMac) {
-      const btn = document.getElementById('btn-mac');
-      if (btn) { btn.classList.add('primary'); }
-      const winBtn = document.getElementById('btn-win');
-      if (winBtn) { winBtn.classList.remove('primary'); }
-    }
-    // Windows is already highlighted by default; Linux shows no highlight
-    if (!isWin && !isMac) {
+    if (!isWin) {
       const winBtn = document.getElementById('btn-win');
       if (winBtn) winBtn.classList.remove('primary');
     }

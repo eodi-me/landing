@@ -14,8 +14,9 @@
   <!-- Sitemap reference -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-  <!-- hreflang — currently English only; add more as translations are added -->
+  <!-- hreflang -->
   <link rel="alternate" hreflang="en" href="https://eodi.me/" />
+  <link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
 
   <!-- Open Graph -->
@@ -47,11 +48,11 @@
     "operatingSystem": "Windows, macOS",
     "description": "A desktop app for exploring neighborhood character — offline-capable, no cloud required.",
     "offers": [
-      { "@type": "Offer", "price": "0",   "priceCurrency": "USD", "name": "Free" },
-      { "@type": "Offer", "price": "8",   "priceCurrency": "USD", "name": "Personal" },
-      { "@type": "Offer", "price": "19",  "priceCurrency": "USD", "name": "Solo Biz" },
-      { "@type": "Offer", "price": "99",  "priceCurrency": "USD", "name": "Business" },
-      { "@type": "Offer", "price": "249", "priceCurrency": "USD", "name": "Enterprise" }
+      { "@type": "Offer", "price": "0",    "priceCurrency": "USD", "name": "Free" },
+      { "@type": "Offer", "price": "4.99", "priceCurrency": "USD", "name": "Personal" },
+      { "@type": "Offer", "price": "9.99", "priceCurrency": "USD", "name": "Solo Biz" },
+      { "@type": "Offer", "price": "49",   "priceCurrency": "USD", "name": "Business" },
+      { "@type": "Offer", "price": "0",    "priceCurrency": "USD", "name": "Enterprise" }
     ]
   }
   </script>
@@ -176,8 +177,6 @@
       color: var(--text2);
     }
 
-    /* VS TABLE */
-
     /* PRICING */
     .pricing-toggle {
       display: inline-flex; align-items: center; gap: 4px;
@@ -235,6 +234,48 @@
     .code-block .str { color: #86efac; }
     .code-block .cmt { color: var(--text3); font-style: italic; }
     .code-block .num { color: #fbbf24; }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 0.5px solid var(--border);
+      padding: 0;
+    }
+    .faq-item summary {
+      padding: 18px 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      padding: 0 0 18px;
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.65;
+    }
+    .faq-item a { color: var(--accent); }
+    .faq-item code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.06);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
 
     /* FOOTER */
     footer {
@@ -298,6 +339,7 @@
     <a href="#screenshots" class="hide-sm">Screenshots</a>
     <a href="#pricing" class="hide-sm">Pricing</a>
     <a href="#api" class="hide-sm">API</a>
+    <a href="ko/" style="font-size:12px;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.14);color:var(--text2);text-decoration:none;margin-right:4px;">🇰🇷 한국어</a>
     <a href="download.html" class="nav-cta">Download Free →</a>
   </div>
 </nav>
@@ -314,7 +356,7 @@
     <a href="download.html" class="btn-primary">⬇ Download Free</a>
     <a href="#screenshots" class="btn-ghost">See Screenshots →</a>
   </div>
-  <p class="hero-note">Windows · macOS · Docker &nbsp;·&nbsp; Data stays on your device</p>
+  <p class="hero-note">Windows · macOS · Docker &nbsp;·&nbsp; Data stays on your device &nbsp;·&nbsp; 8 languages supported</p>
 </div>
 
 <!-- STATS -->
@@ -330,6 +372,10 @@
   <div class="stat-item">
     <div class="stat-num">13</div>
     <div class="stat-label">Urban dimensions</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">8</div>
+    <div class="stat-label">UI languages</div>
   </div>
   <div class="stat-item">
     <div class="stat-num">100%</div>
@@ -455,6 +501,90 @@
   </div>
 </div>
 
+<!-- FAQ -->
+<section id="faq" style="max-width: 760px; margin: 0 auto;">
+  <span class="section-tag">FAQ</span>
+  <h2 class="section-title">Frequently asked questions</h2>
+
+  <details class="faq-item" open>
+    <summary>Does it work without an internet connection?</summary>
+    <p>Yes — after installation the analysis engine runs entirely offline. The map tiles require an internet connection for display, but all neighborhood data and scoring is computed locally on your device. Your searches, bookmarks, and custom data never leave your machine.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Which cities and countries are covered?</summary>
+    <p>eodi.me covers major cities worldwide — over 15,000 cities across 200+ countries, sourced from GeoNames and OpenStreetMap. Coverage is strongest in urban areas with dense POI data (Europe, East Asia, North America). Remote or newly developed areas may have limited data. Check <code>/api/stats</code> for a live coverage breakdown.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>How is neighborhood data collected? Is it up to date?</summary>
+    <p>Data comes from OpenStreetMap (points of interest), GeoNames (city boundaries), and Open-Meteo (climate). The dataset is refreshed quarterly. No proprietary or government data is required — everything is built from open sources.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Is macOS or Linux supported?</summary>
+    <p>Windows is the primary supported platform. macOS support is in development — sign up for the waitlist on the <a href="download.html">download page</a>. Docker deployment (Linux) is available for Business and Enterprise plans.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>How does the license key work? Do I need to create an account?</summary>
+    <p>No account required. After purchase via LemonSqueezy, you receive a license key by email. Paste it into the app's Settings → License screen. The app validates locally and checks weekly when online. One key activates one machine at a time; deactivation frees it for another device.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Can I use my own location data (franchise sites, properties)?</summary>
+    <p>Yes — Solo Biz plans and above support importing custom POI data (CSV, JSON). Your custom locations overlay on the neighborhood map and are included in suitability scoring. The custom data schema is documented in the <a href="docs/byod-schema.md">Custom Data Guide</a>.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Is the REST API included in all plans?</summary>
+    <p>The local REST API is available to Business and Enterprise plans. It runs alongside the desktop app on <code>localhost</code> and provides programmatic access to all search, match, and analysis endpoints. An OpenAPI spec is included.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>What happens to my data if I cancel?</summary>
+    <p>Your bookmarks, presets, and custom locations are stored locally on your device — they are never uploaded to our servers. Cancelling your subscription downgrades your plan to Free after a 14-day grace period; your local data remains intact.</p>
+  </details>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background: var(--surface); border-radius: 24px; padding: 60px 40px; margin-bottom: 0;">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <span class="section-tag">About eodi.me</span>
+    <h2 class="section-title">Built for business owners who<br />need real answers, fast</h2>
+    <p class="section-sub">eodi.me is an independent product focused on making neighborhood intelligence accessible — without enterprise contracts or cloud lock-in.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 840px; margin: 0 auto;">
+    <div style="background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.10); border-radius: 16px; padding: 28px 24px;">
+      <div style="font-size: 28px; margin-bottom: 12px;">🏢</div>
+      <h3 style="font-size: 15px; font-weight: 600; color: var(--text1); margin-bottom: 8px;">Company</h3>
+      <p style="font-size: 13px; color: var(--text2); line-height: 1.6; margin: 0;">
+        eodi.me<br/>
+        Est. 2025<br/>
+        <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a>
+      </p>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.10); border-radius: 16px; padding: 28px 24px;">
+      <div style="font-size: 28px; margin-bottom: 12px;">🔒</div>
+      <h3 style="font-size: 15px; font-weight: 600; color: var(--text1); margin-bottom: 8px;">Privacy First</h3>
+      <p style="font-size: 13px; color: var(--text2); line-height: 1.6; margin: 0;">
+        All analysis runs on your device.<br/>
+        Your business data — locations, competitors, notes — is never sent to our servers.<br/>
+        <a href="privacy.html" style="color: var(--accent);">Privacy Policy →</a>
+      </p>
+    </div>
+    <div style="background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.10); border-radius: 16px; padding: 28px 24px;">
+      <div style="font-size: 28px; margin-bottom: 12px;">✉️</div>
+      <h3 style="font-size: 15px; font-weight: 600; color: var(--text1); margin-bottom: 8px;">Support</h3>
+      <p style="font-size: 13px; color: var(--text2); line-height: 1.6; margin: 0;">
+        <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a><br/>
+        We respond within 1–2 business days.<br/>
+        Refund requests: <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section id="pricing" style="background: var(--surface); border-radius: 24px; padding: 60px 40px;">
   <div style="text-align: center; margin-bottom: 0;">
@@ -465,7 +595,7 @@
     <div class="pricing-toggle" id="billing-toggle">
       <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true">Monthly</button>
       <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')" aria-pressed="false">
-        Annual &nbsp;<span class="save-badge">Save ~30%</span>
+        Annual &nbsp;<span class="save-badge">Save ~35%</span>
       </button>
     </div>
   </div>
@@ -486,7 +616,7 @@
     <!-- Personal -->
     <div class="plan-card">
       <div class="plan-name" style="color: #6496ff">Personal</div>
-      <div class="plan-price" id="price-personal">$8</div>
+      <div class="plan-price" id="price-personal">$4.99</div>
       <div class="plan-period" id="period-personal">/month</div>
       <ul class="plan-features">
         <li>Full 13-dimension report</li>
@@ -498,22 +628,23 @@
     </div>
     <!-- Solo Biz -->
     <div class="plan-card highlight">
-      <div class="plan-popular">Most Popular</div>
+      <div class="plan-popular">Most Popular · For Franchise & SMB</div>
       <div class="plan-name" style="color: #34d399">Solo Biz</div>
-      <div class="plan-price" id="price-solobiz">$19</div>
+      <div class="plan-price" id="price-solobiz">$9.99</div>
       <div class="plan-period" id="period-solobiz">/month</div>
       <ul class="plan-features">
         <li>Everything in Personal</li>
-        <li>Import custom locations</li>
-        <li>Similar location finder</li>
-        <li>Export results (CSV / PDF)</li>
+        <li>📍 Import competitor & custom locations</li>
+        <li>🔍 Find similar neighborhoods to your best sites</li>
+        <li>📊 Export results (CSV / PDF) for reports</li>
+        <li>🐳 Self-hosted Docker option</li>
       </ul>
       <a href="https://eodi.me/buy/solo-biz" class="plan-btn primary">Get Solo Biz</a>
     </div>
     <!-- Business -->
     <div class="plan-card">
       <div class="plan-name" style="color: #f59e0b">Business</div>
-      <div class="plan-price" id="price-business">$99</div>
+      <div class="plan-price" id="price-business">$49</div>
       <div class="plan-period" id="period-business">/month</div>
       <ul class="plan-features">
         <li>Everything in Solo Biz</li>
@@ -527,8 +658,8 @@
     <!-- Enterprise -->
     <div class="plan-card">
       <div class="plan-name" style="color: #e879f9">Enterprise</div>
-      <div class="plan-price" id="price-enterprise">$249</div>
-      <div class="plan-period" id="period-enterprise">/month</div>
+      <div class="plan-price" id="price-enterprise" style="font-size:18px; padding-top:4px;">Contact Us</div>
+      <div class="plan-period" id="period-enterprise">custom pricing</div>
       <ul class="plan-features">
         <li>Everything in Business</li>
         <li>Full REST API access</li>
@@ -536,11 +667,11 @@
         <li>Custom data schema</li>
         <li>Priority support</li>
       </ul>
-      <a href="https://eodi.me/buy/enterprise" class="plan-btn">Contact Us</a>
+      <a href="mailto:hello@eodi.me?subject=Enterprise%20Inquiry" class="plan-btn">Contact Us</a>
     </div>
   </div>
   <p style="text-align: center; font-size: 12px; color: var(--text3); margin-top: 28px;">
-    All plans include the free tier features. Annual billing saves approximately 30% vs. monthly.
+    All plans include the free tier features. Annual billing saves approximately 35% vs. monthly.
   </p>
 </section>
 
@@ -573,7 +704,7 @@
     <a href="https://eodi.me">eodi.me</a> &nbsp;·&nbsp;
     <a href="docs/openapi.yaml">API Docs</a> &nbsp;·&nbsp;
     <a href="docs/byod-schema.md">Custom Data Guide</a> &nbsp;·&nbsp;
-    <a href="mailto:support@eodi.me">Support</a>
+    <a href="mailto:hello@eodi.me">Support</a>
   </p>
   <p style="margin-bottom: 8px;">
     <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
@@ -589,16 +720,16 @@
 <script>
   // Billing toggle (plain JS, no build step)
   const prices = {
-    personal:   { monthly: '$8',   annual: '$59/yr'    },
-    solobiz:    { monthly: '$19',  annual: '$149/yr'   },
-    business:   { monthly: '$99',  annual: '$799/yr'   },
-    enterprise: { monthly: '$249', annual: '$1,999/yr' },
+    personal:   { monthly: '$4.99', annual: '$39/yr'   },
+    solobiz:    { monthly: '$9.99', annual: '$79/yr'   },
+    business:   { monthly: '$49',   annual: '$390/yr'  },
+    enterprise: { monthly: 'Contact Us', annual: 'Contact Us' },
   };
   const periods = {
     personal:   { monthly: '/month', annual: 'per year' },
     solobiz:    { monthly: '/month', annual: 'per year' },
     business:   { monthly: '/month', annual: 'per year' },
-    enterprise: { monthly: '/month', annual: 'per year' },
+    enterprise: { monthly: 'custom pricing', annual: 'custom pricing' },
   };
 
   // Debounce prevents rapid double-clicks from triggering multiple DOM writes
