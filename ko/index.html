@@ -324,7 +324,7 @@
     <div class="stat-label">분석된 헥사곤 수</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">17,500+</div>
+    <div class="stat-num">15,000+</div>
     <div class="stat-label">전 세계 도시 커버</div>
   </div>
   <div class="stat-item">
@@ -482,7 +482,7 @@
 
   <details class="faq-item">
     <summary>라이선스 키는 어떻게 작동하나요? 계정이 필요한가요?</summary>
-    <p>계정이 필요 없습니다. LemonSqueezy를 통해 결제하면 이메일로 라이선스 키를 받습니다. 앱의 설정 → 라이선스 화면에 붙여넣기만 하면 됩니다. 한 번에 한 대의 기기에서 활성화되며, 비활성화하면 다른 기기에서 사용 가능합니다.</p>
+    <p>계정이 필요 없습니다. <a href="https://polar.sh" target="_blank" rel="noopener">Polar</a>를 통해 결제하면 이메일로 라이선스 키를 받습니다. 앱의 설정 → 라이선스 화면에 붙여넣기만 하면 됩니다. 한 번에 한 대의 기기에서 활성화되며, 비활성화하면 다른 기기에서 사용 가능합니다.</p>
   </details>
 
   <details class="faq-item">
@@ -577,22 +577,22 @@
         <li>선호도 기반 탐색</li>
         <li>분석 프리셋 저장</li>
       </ul>
-      <a href="https://eodi.me/buy/personal" class="plan-btn">Personal 시작</a>
+      <a href="https://buy.polar.sh/polar_cl_lPOM89NvwIAS1oN0TdygEdcX1NhOPe4c7nlil1qkW33" id="buy-personal" class="plan-btn" target="_blank" rel="noopener">Personal 시작</a>
     </div>
     <!-- Solo Biz -->
     <div class="plan-card highlight">
-      <div class="plan-popular">가장 인기 · 프랜차이즈·자영업 최적</div>
+      <div class="plan-popular">프랜차이즈·자영업 추천</div>
       <div class="plan-name" style="color: #34d399">Solo Biz</div>
       <div class="plan-price" id="price-solobiz">$9.99</div>
       <div class="plan-period" id="period-solobiz">/월</div>
       <ul class="plan-features">
         <li>Personal 전체 기능 포함</li>
-        <li>📍 경쟁사·커스텀 위치 임포트</li>
+        <li>📍 커스텀 위치 데이터 임포트</li>
         <li>🔍 우수 매장과 유사한 동네 탐색</li>
         <li>📊 CSV·PDF 결과 내보내기</li>
-        <li>🐳 자체 서버(Docker) 배포 가능</li>
+        <li>🖥️ 자체 서버 배포 옵션</li>
       </ul>
-      <a href="https://eodi.me/buy/solo-biz" class="plan-btn primary">Solo Biz 시작</a>
+      <a href="https://buy.polar.sh/polar_cl_jLhdrMsZDq7bn2JeVkRtqDC8ErnRdMNQCK5NV3XqwoU" id="buy-solobiz" class="plan-btn primary" target="_blank" rel="noopener">Solo Biz 시작</a>
     </div>
     <!-- Business -->
     <div class="plan-card">
@@ -606,7 +606,7 @@
         <li>자체 서버(Docker)</li>
         <li>로컬 REST API</li>
       </ul>
-      <a href="https://eodi.me/buy/business" class="plan-btn">Business 시작</a>
+      <a href="https://buy.polar.sh/polar_cl_ogOZBmf4o7rvVB8L1o5WoPd0euuuvilkiXy7q1DEDYl" id="buy-business" class="plan-btn" target="_blank" rel="noopener">Business 시작</a>
     </div>
     <!-- Enterprise -->
     <div class="plan-card">
@@ -646,8 +646,7 @@
 <span class="kw">curl</span> <span class="str">"http://localhost:39721/hex/search?q=합정&amp;limit=10"</span> \
   -H <span class="str">"Authorization: Bearer &lt;your-api-key&gt;"</span></div>
   <p style="margin-top: 24px; font-size: 13px; color: var(--text2);">
-    API 레퍼런스: <a href="../docs/openapi.yaml" style="color: var(--accent);">OpenAPI 명세서</a> ·
-    <a href="../docs/byod-schema.md" style="color: var(--accent);">커스텀 데이터 가이드</a>
+    API 관련 문의: <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a>
   </p>
 </section>
 
@@ -655,8 +654,7 @@
 <footer>
   <p style="margin-bottom: 8px;">
     <a href="https://eodi.me">eodi.me</a> &nbsp;·&nbsp;
-    <a href="../docs/openapi.yaml">API 문서</a> &nbsp;·&nbsp;
-    <a href="../docs/byod-schema.md">커스텀 데이터 가이드</a> &nbsp;·&nbsp;
+    <a href="../download.html">다운로드</a> &nbsp;·&nbsp;
     <a href="mailto:hello@eodi.me">고객 지원</a>
   </p>
   <p style="margin-bottom: 8px;">
@@ -671,35 +669,53 @@
 </footer>
 
 <script>
-  const prices = {
+  var buyLinks = {
+    personal: {
+      monthly: 'https://buy.polar.sh/polar_cl_lPOM89NvwIAS1oN0TdygEdcX1NhOPe4c7nlil1qkW33',
+      annual:  'https://buy.polar.sh/polar_cl_GHRt5bsqIcVmg9B7G9eTpb6oOythas7Cmcfrq2OpUyt',
+    },
+    solobiz: {
+      monthly: 'https://buy.polar.sh/polar_cl_jLhdrMsZDq7bn2JeVkRtqDC8ErnRdMNQCK5NV3XqwoU',
+      annual:  'https://buy.polar.sh/polar_cl_bLsPkr2gZ8B8sixUoONlRarwzzjQ1yzxp1BkJ08cKO3',
+    },
+    business: {
+      monthly: 'https://buy.polar.sh/polar_cl_ogOZBmf4o7rvVB8L1o5WoPd0euuuvilkiXy7q1DEDYl',
+      annual:  'https://buy.polar.sh/polar_cl_ow7rhQX1yjA5GEuTgq4McH8XKpQgkO3qTWCHF3fzejz',
+    },
+  };
+  var prices = {
     personal:   { monthly: '$4.99', annual: '$39/년'  },
     solobiz:    { monthly: '$9.99', annual: '$79/년'  },
     business:   { monthly: '$49',   annual: '$390/년' },
     enterprise: { monthly: '문의하기', annual: '문의하기' },
   };
-  const periods = {
+  var periods = {
     personal:   { monthly: '/월', annual: '연간' },
     solobiz:    { monthly: '/월', annual: '연간' },
     business:   { monthly: '/월', annual: '연간' },
     enterprise: { monthly: '맞춤 견적', annual: '맞춤 견적' },
   };
 
-  let billingDebounce = null;
+  var billingDebounce = null;
   function setBilling(cycle) {
     if (billingDebounce) return;
-    billingDebounce = setTimeout(() => { billingDebounce = null; }, 200);
+    billingDebounce = setTimeout(function() { billingDebounce = null; }, 200);
 
-    const btnMonthly = document.getElementById('btn-monthly');
-    const btnAnnual  = document.getElementById('btn-annual');
+    var btnMonthly = document.getElementById('btn-monthly');
+    var btnAnnual  = document.getElementById('btn-annual');
     btnMonthly.className = 'toggle-btn' + (cycle === 'monthly' ? ' active' : '');
     btnAnnual.className  = 'toggle-btn' + (cycle === 'annual'  ? ' active' : '');
     btnMonthly.setAttribute('aria-pressed', cycle === 'monthly' ? 'true' : 'false');
     btnAnnual.setAttribute('aria-pressed',  cycle === 'annual'  ? 'true' : 'false');
-    for (const [key, val] of Object.entries(prices)) {
-      const priceEl  = document.getElementById('price-'  + key);
-      const periodEl = document.getElementById('period-' + key);
-      if (priceEl)  priceEl.textContent  = val[cycle];
+    for (var key in prices) {
+      var priceEl  = document.getElementById('price-'  + key);
+      var periodEl = document.getElementById('period-' + key);
+      if (priceEl)  priceEl.textContent  = prices[key][cycle];
       if (periodEl) periodEl.textContent = periods[key][cycle];
+    }
+    for (var plan in buyLinks) {
+      var buyBtn = document.getElementById('buy-' + plan);
+      if (buyBtn) buyBtn.href = buyLinks[plan][cycle];
     }
   }
 </script>
