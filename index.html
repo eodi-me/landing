@@ -94,6 +94,26 @@
       border: 0.5px solid rgba(100,150,255,0.3); transition: background .15s;
     }
     .nav-cta:hover { background: rgba(100,150,255,0.22); }
+    /* Maintenance banner */
+    .maintenance-banner {
+      background: rgba(248,113,113,0.12); border-bottom: 0.5px solid rgba(248,113,113,0.3);
+      color: #fca5a5; font-size: 12.5px; font-weight: 500;
+      text-align: center; padding: 10px 2rem; letter-spacing: 0.01em;
+    }
+    .maintenance-banner strong { font-weight: 700; color: #f87171; }
+    /* Disabled button */
+    .btn-disabled {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; padding: 14px 28px; border-radius: 12px;
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3);
+      border: 0.5px solid rgba(255,255,255,0.1); cursor: not-allowed; pointer-events: none;
+    }
+    .plan-btn-disabled {
+      display: block; text-align: center; padding: 11px; border-radius: 8px;
+      font-size: 13.5px; font-weight: 600;
+      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25);
+      border: 0.5px solid rgba(255,255,255,0.08); cursor: not-allowed; pointer-events: none;
+    }
 
     /* HERO */
     .hero {
@@ -364,6 +384,11 @@
 </head>
 <body>
 
+<!-- MAINTENANCE BANNER -->
+<div class="maintenance-banner">
+  🔧 <strong>Temporary maintenance:</strong> Downloads and purchases are temporarily unavailable while we update the app data. We'll be back shortly — thank you for your patience!
+</div>
+
 <!-- NAV -->
 <nav>
   <span class="nav-logo">eodi<span>.</span>me</span>
@@ -372,7 +397,7 @@
     <a href="#guide" class="hide-sm">Guide</a>
     <a href="#pricing" class="hide-sm">Pricing</a>
     <a href="#api" class="hide-sm">API</a>
-    <a href="download.html" class="nav-cta">Download Free →</a>
+    <a href="download.html" class="nav-cta" style="pointer-events:none;opacity:0.35;cursor:not-allowed;">Download Free →</a>
   </div>
 </nav>
 
@@ -385,7 +410,7 @@
     amenities, and more. Runs entirely on your own hardware, offline.
   </p>
   <div class="hero-actions">
-    <a href="download.html" class="btn-primary">⬇ Download Free</a>
+    <a href="download.html" class="btn-primary" style="pointer-events:none;opacity:0.35;cursor:not-allowed;">⬇ Download Free</a>
     <a href="#guide" class="btn-ghost">See How It Works →</a>
   </div>
   <p class="hero-note">Windows 10/11 · macOS coming soon &nbsp;·&nbsp; Data stays on your device &nbsp;·&nbsp; 8 UI languages</p>
@@ -544,7 +569,7 @@
 
     </div>
     <div style="text-align: center; margin-top: 48px;">
-      <a href="download.html" class="btn-primary" style="display: inline-flex;">⬇ Try it free — no account needed</a>
+      <a href="download.html" class="btn-primary" style="display:inline-flex;pointer-events:none;opacity:0.35;cursor:not-allowed;">⬇ Try it free — no account needed</a>
     </div>
   </div>
 </div>
@@ -690,7 +715,7 @@
         <li>Preference-based discovery</li>
         <li>Unlimited browsing</li>
       </ul>
-      <a href="download.html" class="plan-btn">Download Free</a>
+      <span class="plan-btn-disabled">Temporarily Unavailable</span>
     </div>
     <!-- Pro -->
     <div class="plan-card highlight" id="card-personal" style="position:relative;">
@@ -707,7 +732,7 @@
         <li>📊 Export results (CSV)</li>
         <li>💾 Save analysis presets</li>
       </ul>
-      <a href="https://buy.polar.sh/polar_cl_Ml6z5FGUF8sfSEz2A0iCZ0gAjWcWJ2YtVTlbS2MRFub" id="buy-personal" class="plan-btn primary" target="_blank" rel="noopener">Get Pro</a>
+      <span class="plan-btn-disabled" style="background:rgba(100,150,255,0.06);border-color:rgba(100,150,255,0.15);">Temporarily Unavailable</span>
     </div>
   </div>
   <p style="text-align: center; font-size: 12px; color: var(--text3); margin-top: 28px;">
