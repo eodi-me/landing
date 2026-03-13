@@ -3,516 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://buy.polar.sh https://api.github.com https://github.com; frame-src https://buy.polar.sh; font-src 'self' data:;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
   <title>eodi.me · Explore Neighborhoods Before You Arrive</title>
-  <meta name="title" content="eodi.me · Explore Neighborhoods Before You Arrive" />
-  <meta name="description" content="A desktop app for exploring what makes each neighborhood unique — activity, atmosphere, amenities, and more. Runs offline on your own machine. No account required." />
+  <meta name="description" content="A desktop app for exploring what makes each neighborhood unique — food, transit, green space, and more. Runs offline. No account required." />
   <meta name="keywords" content="neighborhood analysis, city vibe, digital nomad, location intelligence, offline map, hexagon map, neighborhood comparison" />
   <link rel="canonical" href="https://eodi.me/" />
+  <link rel="alternate" hreflang="en" href="https://eodi.me/" />
+  <link rel="alternate" hreflang="ko" href="https://eodi.me/?lang=ko" />
+  <link rel="alternate" hreflang="ja" href="https://eodi.me/?lang=ja" />
+  <link rel="alternate" hreflang="zh" href="https://eodi.me/?lang=zh" />
+  <link rel="alternate" hreflang="es" href="https://eodi.me/?lang=es" />
+  <link rel="alternate" hreflang="fr" href="https://eodi.me/?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://eodi.me/?lang=de" />
+  <link rel="alternate" hreflang="pt" href="https://eodi.me/?lang=pt" />
+  <link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://eodi.me/" />
   <meta property="og:title" content="eodi.me · Explore Neighborhoods Before You Arrive" />
-  <meta property="og:description" content="Explore what makes each neighborhood unique — offline desktop app, no account required. Your data stays on your device." />
+  <meta property="og:description" content="Offline neighborhood analysis app. Runs on your device, no cloud required." />
   <meta property="og:image" content="https://eodi.me/images/screenshot-map-en.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="800" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="eodi.me · Explore Neighborhoods Before You Arrive" />
-  <meta name="twitter:description" content="Offline neighborhood analysis app. Runs on your device, no cloud required." />
   <meta name="twitter:image" content="https://eodi.me/images/screenshot-map-en.png" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "eodi.me",
-    "url": "https://eodi.me",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Windows",
-    "description": "A desktop app for exploring neighborhood vibe — offline-capable, no account required.",
-    "offers": [
-      { "@type": "Offer", "price": "0",    "priceCurrency": "USD", "name": "Free" },
-      { "@type": "Offer", "price": "3.99", "priceCurrency": "USD", "name": "Pro" }
-    ]
-  }
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"eodi.me","url":"https://eodi.me","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","description":"A desktop app for exploring neighborhood vibe — offline-capable, no account required.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"3.99","priceCurrency":"USD","name":"Pro"}]}
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #080e1a;
-      --surface: #0d1525;
-      --border: rgba(100,150,255,0.12);
-      --text: #e8eef8;
-      --text2: #8da0be;
-      --text3: #4a5d7a;
-      --accent: #6496ff;
-      --accent2: #34d399;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
-    a { color: inherit; text-decoration: none; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#080e1a;--surface:#0d1525;--border:rgba(100,150,255,0.12);--text:#e8eef8;--text2:#8da0be;--text3:#4a5d7a;--accent:#6496ff;--accent2:#34d399}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 56px;
-      background: rgba(8,14,26,0.88); backdrop-filter: blur(20px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { font-size: 13px; color: var(--text2); transition: color .15s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      font-size: 12.5px; font-weight: 600; padding: 7px 16px; border-radius: 20px;
-      background: rgba(100,150,255,0.14); color: var(--accent);
-      border: 0.5px solid rgba(100,150,255,0.3); transition: background .15s;
-    }
-    .nav-cta:hover { background: rgba(100,150,255,0.22); }
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;background:rgba(8,14,26,0.88);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border)}
+    .nav-logo{font-size:15px;font-weight:700;letter-spacing:-0.02em}.nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:1.2rem}
+    .nav-links a{font-size:13px;color:var(--text2);transition:color .15s}.nav-links a:hover{color:var(--text)}
+    .nav-cta{font-size:12.5px;font-weight:600;padding:7px 16px;border-radius:20px;background:rgba(100,150,255,0.14);color:var(--accent);border:0.5px solid rgba(100,150,255,0.3);transition:background .15s}
+    .nav-cta:hover{background:rgba(100,150,255,0.22)}
+    .lang-select{font-size:12px;color:var(--text2);background:transparent;border:0.5px solid var(--border);border-radius:6px;padding:4px 8px;cursor:pointer;appearance:none;-webkit-appearance:none}
+    .lang-select:focus{outline:none;border-color:rgba(100,150,255,0.35)}
+    option{background:#0d1525;color:#e8eef8}
 
-    .hero {
-      text-align: center; padding: 100px 2rem 80px;
-      background: radial-gradient(ellipse 900px 600px at 50% 0%, rgba(100,150,255,0.07) 0%, transparent 70%);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 5px 12px; border-radius: 20px; margin-bottom: 24px;
-      background: rgba(52,211,153,0.1); color: var(--accent2);
-      border: 0.5px solid rgba(52,211,153,0.25);
-    }
-    .hero h1 {
-      font-size: clamp(30px, 5.5vw, 58px); font-weight: 800; line-height: 1.12;
-      letter-spacing: -0.03em; max-width: 760px; margin: 0 auto 20px;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero-sub { font-size: clamp(14px, 2vw, 17px); color: var(--text2); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14px; font-weight: 600; padding: 12px 28px; border-radius: 12px;
-      background: var(--accent); color: #080e1a; transition: opacity .15s;
-    }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14px; font-weight: 500; padding: 12px 24px; border-radius: 12px;
-      border: 0.5px solid var(--border); color: var(--text2); transition: border-color .15s, color .15s;
-    }
-    .btn-ghost:hover { border-color: rgba(100,150,255,0.35); color: var(--text); }
-    .hero-note { margin-top: 16px; font-size: 12px; color: var(--text3); }
+    .hero{text-align:center;padding:100px 2rem 80px;background:radial-gradient(ellipse 900px 600px at 50% 0%,rgba(100,150,255,0.07) 0%,transparent 70%)}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:24px;background:rgba(52,211,153,0.1);color:var(--accent2);border:0.5px solid rgba(52,211,153,0.25)}
+    .hero h1{font-size:clamp(30px,5.5vw,58px);font-weight:800;line-height:1.12;letter-spacing:-0.03em;max-width:760px;margin:0 auto 20px}
+    .hero h1 span{color:var(--accent)}
+    .hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text2);max-width:520px;margin:0 auto 40px;line-height:1.7}
+    .hero-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:12px 28px;border-radius:12px;background:var(--accent);color:#080e1a;transition:opacity .15s}
+    .btn-primary:hover{opacity:.88}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:12px 24px;border-radius:12px;border:0.5px solid var(--border);color:var(--text2);transition:border-color .15s,color .15s}
+    .btn-ghost:hover{border-color:rgba(100,150,255,0.35);color:var(--text)}
+    .hero-note{margin-top:16px;font-size:12px;color:var(--text3)}
 
-    .stats {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
-      background: var(--surface);
-    }
-    .stat-item {
-      flex: 1; min-width: 140px; max-width: 220px;
-      text-align: center; padding: 24px 16px;
-      border-right: 0.5px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; }
-    .stat-label { font-size: 11.5px; color: var(--text3); margin-top: 3px; }
+    .stats{display:flex;flex-wrap:wrap;justify-content:center;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);background:var(--surface)}
+    .stat-item{flex:1;min-width:140px;max-width:220px;text-align:center;padding:24px 16px;border-right:0.5px solid var(--border)}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-size:26px;font-weight:800;letter-spacing:-0.03em}
+    .stat-label{font-size:11.5px;color:var(--text3);margin-top:3px}
 
-    section { padding: 80px 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 12px;
-    }
-    .section-title { font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-    .section-sub { font-size: 15px; color: var(--text2); max-width: 540px; line-height: 1.7; }
+    section{padding:80px 2rem;max-width:1100px;margin:0 auto}
+    .section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .section-title{font-size:clamp(22px,3.5vw,36px);font-weight:800;letter-spacing:-0.02em;margin-bottom:14px}
+    .section-sub{font-size:15px;color:var(--text2);max-width:540px;line-height:1.7}
 
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 48px; }
-    .feature-card {
-      padding: 26px; border-radius: 16px;
-      background: var(--surface); border: 0.5px solid var(--border);
-      transition: border-color .2s;
-    }
-    .feature-card:hover { border-color: rgba(100,150,255,0.28); }
-    .feature-icon { font-size: 22px; margin-bottom: 14px; }
-    .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-    .feature-card p { font-size: 13px; color: var(--text2); line-height: 1.65; }
-    .feature-pro {
-      display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
-      padding: 2px 8px; border-radius: 10px; margin-top: 10px;
-      background: rgba(100,150,255,0.07); color: var(--text3);
-      border: 0.5px solid var(--border);
-    }
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:48px}
+    .feature-card{padding:26px;border-radius:16px;background:var(--surface);border:0.5px solid var(--border);transition:border-color .2s}
+    .feature-card:hover{border-color:rgba(100,150,255,0.28)}
+    .feature-icon{font-size:22px;margin-bottom:14px}
+    .feature-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+    .feature-card p{font-size:13px;color:var(--text2);line-height:1.65}
+    .feature-pro{display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.04em;padding:2px 8px;border-radius:10px;margin-top:10px;background:rgba(100,150,255,0.07);color:var(--text3);border:0.5px solid var(--border)}
 
-    .screenshot-section { background: var(--surface); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
-    .screenshot-section > div { max-width: 1000px; margin: 0 auto; padding: 80px 2rem; }
-    .screenshot-wrap {
-      margin-top: 48px; border-radius: 14px; overflow: hidden;
-      border: 0.5px solid var(--border); background: var(--bg);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-    }
-    .screenshot-wrap img { display: block; width: 100%; height: auto; }
+    .screenshot-section{background:var(--surface);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+    .screenshot-section>div{max-width:1000px;margin:0 auto;padding:80px 2rem}
+    .screenshot-wrap{margin-top:48px;border-radius:14px;overflow:hidden;border:0.5px solid var(--border);background:var(--bg);box-shadow:0 32px 80px rgba(0,0,0,0.5)}
+    .screenshot-wrap img{display:block;width:100%;height:auto}
 
-    .dims-section { background: var(--bg); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
-    .dims-section > div { max-width: 1100px; margin: 0 auto; padding: 80px 2rem; }
-    .dims-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
-    .dim-chip {
-      font-size: 12.5px; font-weight: 500; padding: 7px 16px; border-radius: 20px;
-      background: rgba(100,150,255,0.07); border: 0.5px solid rgba(100,150,255,0.18);
-      color: var(--text2);
-    }
+    .dims-section{background:var(--bg);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+    .dims-section>div{max-width:1100px;margin:0 auto;padding:80px 2rem}
+    .dim-chip{font-size:12.5px;font-weight:500;padding:7px 16px;border-radius:20px;background:rgba(100,150,255,0.07);border:0.5px solid rgba(100,150,255,0.18);color:var(--text2)}
 
-    .pricing-toggle {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px; border-radius: 24px; margin-bottom: 40px;
-      background: rgba(255,255,255,0.04); border: 0.5px solid var(--border);
-    }
-    .toggle-btn {
-      font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 20px; cursor: pointer;
-      border: none; background: transparent; color: var(--text2); transition: all .15s;
-    }
-    .toggle-btn.active { background: rgba(100,150,255,0.14); color: var(--text); border: 0.5px solid rgba(100,150,255,0.3); }
-    .save-badge {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 2px 7px; border-radius: 12px;
-      background: rgba(52,211,153,0.15); color: var(--accent2);
-    }
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 560px; margin: 0 auto; }
-    .plan-card {
-      padding: 28px; border-radius: 16px;
-      background: var(--surface); border: 0.5px solid var(--border);
-      position: relative;
-    }
-    .plan-card.highlight { border-color: rgba(100,150,255,0.4); background: rgba(100,150,255,0.03); }
-    .plan-popular {
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 12px;
-      background: var(--accent); color: #080e1a;
-    }
-    .lifetime-best-value {
-      display: none;
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 12px;
-      background: var(--accent2); color: #080e1a; white-space: nowrap;
-    }
-    .plan-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-    .plan-price { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2px; }
-    .plan-period { font-size: 11px; color: var(--text3); margin-bottom: 18px; }
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
-    .plan-features li { font-size: 12.5px; color: var(--text2); display: flex; align-items: baseline; gap: 7px; }
-    .plan-features li::before { content: "✓"; color: var(--accent2); font-weight: 700; flex-shrink: 0; }
-    .plan-btn {
-      display: block; width: 100%; text-align: center;
-      font-size: 13px; font-weight: 600; padding: 10px 0; border-radius: 10px;
-      background: rgba(100,150,255,0.1); color: var(--accent);
-      border: 0.5px solid rgba(100,150,255,0.25); transition: background .15s;
-    }
-    .plan-btn:hover { background: rgba(100,150,255,0.18); }
-    .plan-btn.primary { background: var(--accent); color: #080e1a; border-color: transparent; }
-    .plan-btn.primary:hover { opacity: 0.88; }
-    .plan-btn-disabled {
-      display: block; text-align: center; padding: 10px; border-radius: 10px;
-      font-size: 13px; font-weight: 600;
-      background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2);
-      border: 0.5px solid rgba(255,255,255,0.07); cursor: not-allowed; pointer-events: none;
-    }
+    .pricing-toggle{display:inline-flex;align-items:center;gap:4px;padding:4px;border-radius:24px;margin-bottom:40px;background:rgba(255,255,255,0.04);border:0.5px solid var(--border)}
+    .toggle-btn{font-size:12px;font-weight:500;padding:6px 16px;border-radius:20px;cursor:pointer;border:none;background:transparent;color:var(--text2);transition:all .15s}
+    .toggle-btn.active{background:rgba(100,150,255,0.14);color:var(--text);border:0.5px solid rgba(100,150,255,0.3)}
+    .save-badge{font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:2px 7px;border-radius:12px;background:rgba(52,211,153,0.15);color:var(--accent2)}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:560px;margin:0 auto}
+    .plan-card{padding:28px;border-radius:16px;background:var(--surface);border:0.5px solid var(--border);position:relative}
+    .plan-card.highlight{border-color:rgba(100,150,255,0.4);background:rgba(100,150,255,0.03)}
+    .plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:12px;white-space:nowrap}
+    .plan-badge.popular{background:var(--accent);color:#080e1a}
+    .plan-badge.best-value{display:none;background:var(--accent2);color:#080e1a}
+    .plan-name{font-size:13px;font-weight:700;margin-bottom:4px}
+    .plan-price{font-size:28px;font-weight:800;letter-spacing:-0.03em;margin-bottom:2px}
+    .plan-period{font-size:11px;color:var(--text3);margin-bottom:18px}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:22px}
+    .plan-features li{font-size:12.5px;color:var(--text2);display:flex;align-items:baseline;gap:7px}
+    .plan-features li::before{content:"✓";color:var(--accent2);font-weight:700;flex-shrink:0}
+    .plan-btn{display:block;width:100%;text-align:center;font-size:13px;font-weight:600;padding:10px 0;border-radius:10px;background:rgba(100,150,255,0.1);color:var(--accent);border:0.5px solid rgba(100,150,255,0.25);transition:background .15s}
+    .plan-btn:hover{background:rgba(100,150,255,0.18)}
+    .plan-btn.primary{background:var(--accent);color:#080e1a;border-color:transparent}
+    .plan-btn.primary:hover{opacity:.88}
 
-    .faq-item { border-bottom: 0.5px solid var(--border); }
-    .faq-item summary {
-      padding: 18px 0; font-size: 15px; font-weight: 600; color: var(--text);
-      cursor: pointer; list-style: none;
-      display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 300; color: var(--accent); flex-shrink: 0; transition: transform .2s; }
-    .faq-item[open] summary::after { transform: rotate(45deg); }
-    .faq-item p { padding: 0 0 18px; font-size: 14px; color: var(--text2); line-height: 1.65; }
-    .faq-item a { color: var(--accent); }
-    .faq-item code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; background: rgba(255,255,255,.06); padding: 1px 5px; border-radius: 4px; }
+    .faq-item{border-bottom:0.5px solid var(--border)}
+    .faq-item summary{padding:18px 0;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-size:22px;font-weight:300;color:var(--accent);flex-shrink:0;transition:transform .2s}
+    .faq-item[open] summary::after{transform:rotate(45deg)}
+    .faq-item p{padding:0 0 18px;font-size:14px;color:var(--text2);line-height:1.65}
+    .faq-item a{color:var(--accent)}
 
-    footer {
-      text-align: center; padding: 40px 2rem;
-      border-top: 0.5px solid var(--border);
-      font-size: 12px; color: var(--text3);
-    }
-    footer a { color: var(--text2); transition: color .15s; }
-    footer a:hover { color: var(--text); }
+    footer{text-align:center;padding:40px 2rem;border-top:0.5px solid var(--border);font-size:12px;color:var(--text3)}
+    footer a{color:var(--text2);transition:color .15s}
+    footer a:hover{color:var(--text)}
 
-    @media (max-width: 640px) {
-      .nav-links .hide-sm { display: none; }
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
+    @media(max-width:640px){.nav-links .hide-sm{display:none}.pricing-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <span class="nav-logo">eodi<span>.</span>me</span>
   <div class="nav-links">
-    <a href="#features" class="hide-sm">Features</a>
-    <a href="#pricing" class="hide-sm">Pricing</a>
-    <a href="#faq" class="hide-sm">FAQ</a>
-    <a href="download.html" class="nav-cta">Download Free →</a>
+    <a href="#features" class="hide-sm" data-i18n="nav_features">Features</a>
+    <a href="#pricing" class="hide-sm" data-i18n="nav_pricing">Pricing</a>
+    <a href="#faq" class="hide-sm" data-i18n="nav_faq">FAQ</a>
+    <select class="lang-select" id="lang-switcher" aria-label="Language" onchange="setLang(this.value)">
+      <option value="en">EN</option>
+      <option value="ko">한국어</option>
+      <option value="ja">日本語</option>
+      <option value="zh">中文</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="pt">Português</option>
+    </select>
+    <a href="download.html" class="nav-cta" data-i18n="nav_download">Download Free →</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">✦ Free to download &nbsp;·&nbsp; No account needed</div>
-  <h1>Explore a neighborhood<br />before you <span>arrive</span></h1>
-  <p class="hero-sub">
-    See what each area is actually like — food, transit, green space, nightlife,
-    and more. Runs offline on your own machine.
-  </p>
+  <div class="hero-badge" data-i18n="hero_badge">✦ Free to download · No account needed</div>
+  <h1 data-i18n-html="hero_h1">Explore a neighborhood<br />before you <span>arrive</span></h1>
+  <p class="hero-sub" data-i18n="hero_sub">See what each area is actually like — food, transit, green space, nightlife, and more. Runs offline on your own machine.</p>
   <div class="hero-actions">
-    <a href="download.html" class="btn-primary">⬇ Download Free</a>
-    <a href="#features" class="btn-ghost">Learn more →</a>
+    <a href="download.html" class="btn-primary" data-i18n="hero_dl">⬇ Download Free</a>
+    <a href="#features" class="btn-ghost" data-i18n="hero_learn">Learn more →</a>
   </div>
-  <p class="hero-note">Windows 10/11 &nbsp;·&nbsp; Data stays on your device &nbsp;·&nbsp; 8 UI languages</p>
+  <p class="hero-note" data-i18n="hero_note">Windows 10/11 · Data stays on your device · 8 UI languages</p>
 </div>
 
-<!-- STATS -->
 <div class="stats">
-  <div class="stat-item">
-    <div class="stat-num">68,000+</div>
-    <div class="stat-label">Cities worldwide</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">200+</div>
-    <div class="stat-label">Countries covered</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">6</div>
-    <div class="stat-label">Vibe dimensions</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">8</div>
-    <div class="stat-label">UI languages</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Offline capable</div>
-  </div>
+  <div class="stat-item"><div class="stat-num">68,000+</div><div class="stat-label" data-i18n="stat_cities">Cities worldwide</div></div>
+  <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label" data-i18n="stat_countries">Countries covered</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label" data-i18n="stat_dims">Vibe dimensions</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label" data-i18n="stat_langs">UI languages</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat_offline">Offline capable</div></div>
 </div>
 
-<!-- SCREENSHOT -->
 <div class="screenshot-section">
   <div>
-    <span class="section-tag">The App</span>
-    <h2 class="section-title">Hexagon grid over any city</h2>
-    <p class="section-sub">Search a city and each neighborhood lights up with its own color — based on what's actually there. Click any hexagon for a full breakdown.</p>
+    <span class="section-tag" data-i18n="ss_tag">The App</span>
+    <h2 class="section-title" data-i18n="ss_title">Hexagon grid over any city</h2>
+    <p class="section-sub" data-i18n="ss_sub">Search a city and each neighborhood lights up with its own color — based on what's actually there. Click any hexagon for a full breakdown.</p>
     <div class="screenshot-wrap">
-      <img src="images/screenshot-map-en.png" alt="eodi.me app showing hexagon vibe overlay on a city map" loading="lazy" />
+      <img src="images/screenshot-map-en.png" alt="eodi.me app showing hexagon vibe overlay on a city map" loading="lazy" id="hero-img" />
     </div>
   </div>
 </div>
 
-<!-- FEATURES -->
 <section id="features">
-  <span class="section-tag">What it does</span>
-  <h2 class="section-title">A few things it's good at</h2>
-  <p class="section-sub">We built this for people trying to understand a place before committing to it — whether that's a move, a trip, or a site decision.</p>
+  <span class="section-tag" data-i18n="feat_tag">What it does</span>
+  <h2 class="section-title" data-i18n="feat_title">A few things it's good at</h2>
+  <p class="section-sub" data-i18n="feat_sub">We built this for people trying to understand a place before committing to it — whether that's a move, a trip, or a site decision.</p>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">🔒</div>
-      <h3>Fully Offline</h3>
-      <p>The analysis engine runs entirely on your device. No internet required after installation. Your searches, bookmarks, and notes never leave your machine.</p>
+      <h3 data-i18n="f1_title">Fully Offline</h3>
+      <p data-i18n="f1_desc">The analysis engine runs entirely on your device. No internet required after installation. Your searches, bookmarks, and notes never leave your machine.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🗺️</div>
-      <h3>Neighborhood-Level Detail</h3>
-      <p>Cities are broken into small hexagonal cells — roughly the size of a walkable neighborhood. Each cell gets its own score based on what's around it.</p>
+      <h3 data-i18n="f2_title">Neighborhood-Level Detail</h3>
+      <p data-i18n="f2_desc">Cities are broken into small hexagonal cells — roughly the size of a walkable neighborhood. Each cell gets its own score based on what's around it.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔍</div>
-      <h3>Find Similar Places</h3>
-      <p>Pick a neighborhood you know and like. The app finds other areas with a similar feel — anywhere in the world. Useful when you're moving somewhere unfamiliar.</p>
+      <h3 data-i18n="f3_title">Find Similar Places</h3>
+      <p data-i18n="f3_desc">Pick a neighborhood you know and like. The app finds other areas with a similar feel — anywhere in the world. Useful when you're moving somewhere unfamiliar.</p>
       <span class="feature-pro">Pro</span>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📊</div>
-      <h3>Compare Side by Side</h3>
-      <p>Select two neighborhoods and see exactly how they differ across each dimension. Useful when you're down to a shortlist and want a clearer picture.</p>
+      <h3 data-i18n="f4_title">Compare Side by Side</h3>
+      <p data-i18n="f4_desc">Select two neighborhoods and see exactly how they differ across each dimension. Useful when you're down to a shortlist and want a clearer picture.</p>
       <span class="feature-pro">Pro</span>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🌍</div>
-      <h3>Global Coverage</h3>
-      <p>Works for cities in Asia, Europe, the Americas, Africa, and Oceania — wherever OpenStreetMap has sufficient data. No separate regional downloads.</p>
+      <h3 data-i18n="f5_title">Global Coverage</h3>
+      <p data-i18n="f5_desc">Works for cities in Asia, Europe, the Americas, Africa, and Oceania — wherever OpenStreetMap has sufficient data. No separate regional downloads.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📄</div>
-      <h3>Export to PDF</h3>
-      <p>Save a full vibe report for any neighborhood as a PDF — useful if you're presenting a location decision to someone else or just want a record.</p>
+      <h3 data-i18n="f6_title">Export to PDF</h3>
+      <p data-i18n="f6_desc">Save a full vibe report for any neighborhood as a PDF — useful if you're presenting a location decision to someone else or just want a record.</p>
       <span class="feature-pro">Pro</span>
     </div>
   </div>
 </section>
 
-<!-- DIMENSIONS -->
 <div class="dims-section">
   <div>
-    <span class="section-tag">What We Measure</span>
-    <h2 class="section-title">Six vibe dimensions</h2>
-    <p class="section-sub">
-      Each neighborhood is scored across six aspects of daily life, based on
-      point-of-interest data from OpenStreetMap. The scores reflect what's physically
-      there — not opinions, ratings, or proprietary data.
-    </p>
-    <div class="dims-grid" style="margin-top: 32px;">
-      <span class="dim-chip">🍽️ Food &amp; Drink</span>
-      <span class="dim-chip">🎭 Culture</span>
-      <span class="dim-chip">🌙 Nightlife</span>
-      <span class="dim-chip">🌳 Green Space</span>
-      <span class="dim-chip">🚇 Transit</span>
-      <span class="dim-chip">🛍️ Commerce</span>
+    <span class="section-tag" data-i18n="dim_tag">What We Measure</span>
+    <h2 class="section-title" data-i18n="dim_title">Six vibe dimensions</h2>
+    <p class="section-sub" data-i18n="dim_sub">Each neighborhood is evaluated across six aspects of daily life, based on point-of-interest data from OpenStreetMap. The result reflects what's physically there — not opinions or proprietary data.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px">
+      <span class="dim-chip">🍽️ <span data-i18n="dim_food">Food &amp; Drink</span></span>
+      <span class="dim-chip">🎭 <span data-i18n="dim_culture">Culture</span></span>
+      <span class="dim-chip">🌙 <span data-i18n="dim_night">Nightlife</span></span>
+      <span class="dim-chip">🌳 <span data-i18n="dim_green">Green Space</span></span>
+      <span class="dim-chip">🚇 <span data-i18n="dim_transit">Transit</span></span>
+      <span class="dim-chip">🛍️ <span data-i18n="dim_commerce">Commerce</span></span>
     </div>
-    <p style="margin-top: 20px; font-size: 13px; color: var(--text3); line-height: 1.65;">
-      We do not measure or infer crime rates, income levels, property prices,
-      or any demographic characteristics. Scores reflect POI density relative
-      to other areas — not absolute quality judgments.
-    </p>
+    <p style="margin-top:20px;font-size:13px;color:var(--text3);line-height:1.65" data-i18n="dim_note">We do not measure crime rates, income levels, property prices, or any demographic characteristics. Results reflect POI density relative to other areas — not absolute quality judgments.</p>
   </div>
 </div>
 
-<!-- PRICING -->
-<section id="pricing" style="background: var(--surface); border-radius: 24px; padding: 60px 40px;">
-  <div style="text-align: center; margin-bottom: 0;">
-    <span class="section-tag">Pricing</span>
-    <h2 class="section-title">Start free, no account needed</h2>
-    <p class="section-sub" style="margin: 0 auto 32px;">
-      Download and use the core features for free. Pro unlocks deeper analysis tools —
-      activated with a license key, no sign-up required.
-    </p>
-    <div class="pricing-toggle" id="billing-toggle">
-      <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true">Monthly</button>
-      <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')" aria-pressed="false">Annual &nbsp;<span class="save-badge">Save ~35%</span></button>
-      <button class="toggle-btn" id="btn-lifetime" onclick="setBilling('lifetime')" aria-pressed="false">Lifetime &nbsp;<span class="save-badge">One-time</span></button>
+<section id="pricing" style="background:var(--surface);border-radius:24px;padding:60px 40px">
+  <div style="text-align:center">
+    <span class="section-tag" data-i18n="price_tag">Pricing</span>
+    <h2 class="section-title" data-i18n="price_title">Start free, no account needed</h2>
+    <p class="section-sub" style="margin:0 auto 32px" data-i18n="price_sub">Download and use the core features for free. Pro unlocks deeper analysis tools — activated with a license key, no sign-up required.</p>
+    <div class="pricing-toggle">
+      <button class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true" data-i18n="bill_monthly">Monthly</button>
+      <button class="toggle-btn" id="btn-annual" onclick="setBilling('annual')" aria-pressed="false"><span data-i18n="bill_annual">Annual</span> &nbsp;<span class="save-badge" data-i18n="bill_annual_badge">Save ~35%</span></button>
+      <button class="toggle-btn" id="btn-lifetime" onclick="setBilling('lifetime')" aria-pressed="false"><span data-i18n="bill_lifetime">Lifetime</span> &nbsp;<span class="save-badge" data-i18n="bill_lifetime_badge">One-time</span></button>
     </div>
   </div>
   <div class="pricing-grid">
-    <!-- Free -->
     <div class="plan-card">
-      <div class="plan-name" style="color: var(--text2)">Free</div>
+      <div class="plan-name" style="color:var(--text2)" data-i18n="free_name">Free</div>
       <div class="plan-price">$0</div>
-      <div class="plan-period">forever</div>
+      <div class="plan-period" data-i18n="free_period">forever</div>
       <ul class="plan-features">
-        <li>Search &amp; browse neighborhoods</li>
-        <li>Full 6-dimension vibe report</li>
-        <li>Bookmarks &amp; history</li>
-        <li>8 UI languages</li>
-        <li>Works completely offline</li>
+        <li data-i18n="free_f1">Search &amp; browse neighborhoods</li>
+        <li data-i18n="free_f2">Full 6-dimension vibe report</li>
+        <li data-i18n="free_f3">Bookmarks &amp; history</li>
+        <li data-i18n="free_f4">8 UI languages</li>
+        <li data-i18n="free_f5">Works completely offline</li>
       </ul>
-      <a href="download.html" class="plan-btn">Download Free</a>
+      <a href="download.html" class="plan-btn" data-i18n="free_btn">Download Free</a>
     </div>
-    <!-- Pro -->
     <div class="plan-card highlight">
-      <div class="plan-popular" id="pro-popular">Most Popular</div>
-      <div class="lifetime-best-value" id="lifetime-best-value">★ Best Value</div>
-      <div class="plan-name" style="color: var(--accent)">Pro</div>
+      <div class="plan-badge popular" id="pro-popular" data-i18n="pro_popular">Most Popular</div>
+      <div class="plan-badge best-value" id="lifetime-best-value" data-i18n="pro_best">★ Best Value</div>
+      <div class="plan-name" style="color:var(--accent)">Pro</div>
       <div class="plan-price" id="price-pro">$3.99</div>
-      <div class="plan-period" id="period-pro">/month</div>
+      <div class="plan-period" id="period-pro" data-i18n="pro_period_monthly">/month</div>
       <ul class="plan-features">
-        <li>Everything in Free</li>
-        <li>Find similar neighborhoods</li>
-        <li>Side-by-side comparison</li>
-        <li>PDF export</li>
-        <li>Save analysis presets</li>
-        <li>Priority email support</li>
+        <li data-i18n="pro_f1">Everything in Free</li>
+        <li data-i18n="pro_f2">Find similar neighborhoods</li>
+        <li data-i18n="pro_f3">Side-by-side comparison</li>
+        <li data-i18n="pro_f4">PDF export</li>
+        <li data-i18n="pro_f5">Save analysis presets</li>
+        <li data-i18n="pro_f6">Priority email support</li>
       </ul>
-      <a href="https://buy.polar.sh/polar_cl_Ml6z5FGUF8sfSEz2A0iCZ0gAjWcWJ2YtVTlbS2MRFub" class="plan-btn primary" id="buy-pro" target="_blank" rel="noopener">Get Pro →</a>
+      <a href="https://buy.polar.sh/polar_cl_Ml6z5FGUF8sfSEz2A0iCZ0gAjWcWJ2YtVTlbS2MRFub" class="plan-btn primary" id="buy-pro" target="_blank" rel="noopener" data-i18n="pro_btn">Get Pro →</a>
     </div>
   </div>
-  <p style="text-align: center; font-size: 12px; color: var(--text3); margin-top: 24px;">
-    Have questions? <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a>
+  <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:24px">
+    <span data-i18n="price_contact">Have questions?</span> <a href="mailto:hello@eodi.me" style="color:var(--accent)">hello@eodi.me</a>
   </p>
 </section>
 
-<!-- FAQ -->
-<section id="faq" style="max-width: 720px; margin: 0 auto;">
-  <span class="section-tag">FAQ</span>
-  <h2 class="section-title">Common questions</h2>
-
+<section id="faq" style="max-width:720px;margin:0 auto">
+  <span class="section-tag" data-i18n="faq_tag">FAQ</span>
+  <h2 class="section-title" data-i18n="faq_title">Common questions</h2>
   <details class="faq-item" open>
-    <summary>Does it work without an internet connection?</summary>
-    <p>Yes — after installation the analysis engine runs fully offline. Map tiles need an internet connection to display, but all neighborhood data, scoring, and search runs locally. Nothing is sent to any server.</p>
+    <summary data-i18n="faq1_q">Does it work without an internet connection?</summary>
+    <p data-i18n="faq1_a">Yes — after installation the analysis engine runs fully offline. Map tiles need an internet connection to display, but all neighborhood data, scoring, and search runs locally. Nothing is sent to any server.</p>
   </details>
-
   <details class="faq-item">
-    <summary>Which cities and countries are included?</summary>
-    <p>The dataset covers 68,000+ cities across 200+ countries, sourced from GeoNames and OpenStreetMap. Coverage is strongest where OSM contributors have mapped points of interest thoroughly — generally urban areas in Europe, East Asia, and the Americas. Areas with sparse OSM data will have fewer neighborhoods in the results.</p>
+    <summary data-i18n="faq2_q">Which cities and countries are included?</summary>
+    <p data-i18n="faq2_a">The dataset covers 68,000+ cities across 200+ countries, sourced from GeoNames and OpenStreetMap. Coverage is strongest where OSM contributors have mapped points of interest thoroughly — generally urban areas in Europe, East Asia, and the Americas.</p>
   </details>
-
   <details class="faq-item">
-    <summary>How is the data collected and how often is it updated?</summary>
-    <p>Point-of-interest data comes from OpenStreetMap. City and country metadata comes from GeoNames. No proprietary, government, or commercial data sources are used. The dataset is rebuilt periodically as we improve the pipeline.</p>
+    <summary data-i18n="faq3_q">How is the data collected and updated?</summary>
+    <p data-i18n="faq3_a">Point-of-interest data comes from OpenStreetMap. City metadata comes from GeoNames. No proprietary, government, or commercial data sources are used. The dataset is rebuilt periodically.</p>
   </details>
-
   <details class="faq-item">
-    <summary>How does the Pro license work? Do I need an account?</summary>
-    <p>No account required. After purchase via <a href="https://polar.sh" target="_blank" rel="noopener">Polar</a>, you receive a license key by email. Paste it into Settings → License in the app. One key activates one machine at a time; you can deactivate it to move to another device.</p>
+    <summary data-i18n="faq4_q">How does the Pro license work? Do I need an account?</summary>
+    <p data-i18n="faq4_a">No account required. After purchase via Polar, you receive a license key by email. Paste it into Settings → License in the app. One key activates one machine at a time; you can deactivate it to move to another device.</p>
   </details>
-
   <details class="faq-item">
-    <summary>Is macOS supported?</summary>
-    <p>Windows 10 and 11 are supported. macOS support is something we're working toward — it depends on testing and build stability. If you're on macOS and want to be notified, <a href="mailto:hello@eodi.me">send us an email</a>.</p>
+    <summary data-i18n="faq5_q">Is macOS supported?</summary>
+    <p data-i18n="faq5_a">Windows 10 and 11 are supported. macOS support is something we're working toward. If you're on macOS and want to be notified, send us an email at hello@eodi.me.</p>
   </details>
-
   <details class="faq-item">
-    <summary>What does the hexagon grid represent?</summary>
-    <p>The city is divided into a uniform grid of hexagonal cells using the <a href="https://h3geo.org" target="_blank" rel="noopener">H3 system</a> (resolution 8 — roughly 0.7 km² per cell). Each hexagon is scored based on what points of interest exist within and nearby it. The grid makes it easier to compare adjacent areas fairly, since each cell covers the same geographic area.</p>
-  </details>
-
-  <details class="faq-item">
-    <summary>What happens to my data if I cancel Pro?</summary>
-    <p>Your bookmarks, presets, and local data are stored only on your device — they're never uploaded. Cancelling downgrades to Free after the billing period ends. Your local data stays intact.</p>
+    <summary data-i18n="faq6_q">What does the hexagon grid represent?</summary>
+    <p data-i18n="faq6_a">The city is divided into a uniform grid of hexagonal cells using the H3 system (resolution 8 — roughly 0.7 km² per cell). Each hexagon is evaluated based on points of interest within and nearby it. The grid makes it easier to compare adjacent areas fairly.</p>
   </details>
 </section>
 
-<!-- ABOUT -->
-<section id="about" style="background: var(--surface); border-radius: 20px; padding: 56px 40px; margin-bottom: 0;">
-  <div style="text-align: center; max-width: 580px; margin: 0 auto;">
-    <span class="section-tag">About</span>
-    <h2 class="section-title" style="margin-bottom: 16px;">A small independent tool</h2>
-    <p style="font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 28px;">
-      eodi.me is a small independent product. It's not backed by a large team or significant funding.
-      We built it because we wanted something like this and it didn't exist in a form we were happy with.
-      <br/><br/>
-      If you find it useful, the Pro plan is how we keep working on it.
-      If you find a bug or something that feels off, <a href="mailto:hello@eodi.me" style="color: var(--accent);">email us</a> — we read everything.
-    </p>
-    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--text2);">
-      <a href="mailto:hello@eodi.me" style="color: var(--accent);">hello@eodi.me</a>
-      <span style="color: var(--text3);">·</span>
-      <a href="privacy.html" style="color: var(--text2);">Privacy Policy</a>
-      <span style="color: var(--text3);">·</span>
-      <a href="terms.html" style="color: var(--text2);">Terms</a>
+<section id="about" style="background:var(--surface);border-radius:20px;padding:56px 40px;margin-bottom:0">
+  <div style="text-align:center;max-width:580px;margin:0 auto">
+    <span class="section-tag" data-i18n="about_tag">About</span>
+    <h2 class="section-title" style="margin-bottom:16px" data-i18n="about_title">A small independent tool</h2>
+    <p style="font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:28px" data-i18n="about_body">eodi.me is a small independent product. We built it because we wanted something like this and it didn't exist in a form we were happy with. If you find it useful, the Pro plan is how we keep working on it. If you find a bug, email us — we read everything.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--text2)">
+      <a href="mailto:hello@eodi.me" style="color:var(--accent)">hello@eodi.me</a>
+      <span style="color:var(--text3)">·</span>
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <span style="color:var(--text3)">·</span>
+      <a href="terms.html" data-i18n="footer_terms">Terms</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p style="margin-bottom: 8px;">
+  <p style="margin-bottom:8px">
     <a href="https://eodi.me">eodi.me</a> &nbsp;·&nbsp;
-    <a href="download.html">Download</a> &nbsp;·&nbsp;
-    <a href="mailto:hello@eodi.me">Contact</a> &nbsp;·&nbsp;
-    <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
-    <a href="terms.html">Terms</a>
+    <a href="download.html" data-i18n="nav_download_text">Download</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@eodi.me" data-i18n="footer_contact">Contact</a> &nbsp;·&nbsp;
+    <a href="privacy.html" data-i18n="footer_privacy">Privacy</a> &nbsp;·&nbsp;
+    <a href="terms.html" data-i18n="footer_terms">Terms</a>
   </p>
-  <p style="margin-bottom: 6px; font-size: 11px; color: var(--text3);">
+  <p style="margin-bottom:6px;font-size:11px;color:var(--text3)">
     Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &nbsp;·&nbsp;
     City data © <a href="https://www.geonames.org" target="_blank" rel="noopener">GeoNames</a> (CC BY 4.0)
   </p>
@@ -520,28 +349,363 @@
 </footer>
 
 <script>
-  const buyLinks = {
-    monthly:  'https://buy.polar.sh/polar_cl_Ml6z5FGUF8sfSEz2A0iCZ0gAjWcWJ2YtVTlbS2MRFub',
-    annual:   'https://buy.polar.sh/polar_cl_mlCUP1Juw9Zv82aE8aAs4ZuB04AN8wi4ljlt20lIA0B',
-    lifetime: 'https://buy.polar.sh/polar_cl_UmQmBnM8ztgFZnWCzkQq20Nayn5NDP1WwYgV12XaWbZ',
-  };
-  const prices  = { monthly: '$3.99', annual: '$29', lifetime: '$49' };
-  const periods = { monthly: '/month', annual: '/year', lifetime: 'one-time' };
+// ── i18n dictionary ─────────────────────────────────────────────────────────
+var I18N = {
+  en: {
+    nav_features:'Features', nav_pricing:'Pricing', nav_faq:'FAQ', nav_download:'Download Free →', nav_download_text:'Download',
+    hero_badge:'✦ Free to download · No account needed',
+    hero_h1:'Explore a neighborhood<br />before you <span>arrive</span>',
+    hero_sub:'See what each area is actually like — food, transit, green space, nightlife, and more. Runs offline on your own machine.',
+    hero_dl:'⬇ Download Free', hero_learn:'Learn more →',
+    hero_note:'Windows 10/11 · Data stays on your device · 8 UI languages',
+    stat_cities:'Cities worldwide', stat_countries:'Countries covered', stat_dims:'Vibe dimensions', stat_langs:'UI languages', stat_offline:'Offline capable',
+    ss_tag:'The App', ss_title:'Hexagon grid over any city', ss_sub:"Search a city and each neighborhood lights up with its own color — based on what's actually there. Click any hexagon for a full breakdown.",
+    feat_tag:'What it does', feat_title:"A few things it's good at", feat_sub:'We built this for people trying to understand a place before committing to it — whether that\'s a move, a trip, or a site decision.',
+    f1_title:'Fully Offline', f1_desc:'The analysis engine runs entirely on your device. No internet required after installation. Your searches, bookmarks, and notes never leave your machine.',
+    f2_title:'Neighborhood-Level Detail', f2_desc:"Cities are broken into small hexagonal cells — roughly the size of a walkable neighborhood. Each cell gets its own evaluation based on what's around it.",
+    f3_title:'Find Similar Places', f3_desc:"Pick a neighborhood you know and like. The app finds other areas with a similar feel — anywhere in the world. Useful when you're moving somewhere unfamiliar.",
+    f4_title:'Compare Side by Side', f4_desc:"Select two neighborhoods and see exactly how they differ across each dimension. Useful when you're down to a shortlist.",
+    f5_title:'Global Coverage', f5_desc:'Works for cities in Asia, Europe, the Americas, Africa, and Oceania — wherever OpenStreetMap has sufficient data. No separate regional downloads.',
+    f6_title:'Export to PDF', f6_desc:"Save a full vibe report for any neighborhood as a PDF — useful if you're presenting a location decision or just want a record.",
+    dim_tag:'What We Measure', dim_title:'Six vibe dimensions', dim_sub:'Each neighborhood is evaluated across six aspects of daily life, based on point-of-interest data from OpenStreetMap. The result reflects what\'s physically there — not opinions or proprietary data.',
+    dim_food:'Food & Drink', dim_culture:'Culture', dim_night:'Nightlife', dim_green:'Green Space', dim_transit:'Transit', dim_commerce:'Commerce',
+    dim_note:"We do not measure crime rates, income levels, property prices, or any demographic characteristics. Results reflect POI density relative to other areas — not absolute quality judgments.",
+    price_tag:'Pricing', price_title:'Start free, no account needed', price_sub:'Download and use the core features for free. Pro unlocks deeper analysis tools — activated with a license key, no sign-up required.',
+    bill_monthly:'Monthly', bill_annual:'Annual', bill_annual_badge:'Save ~35%', bill_lifetime:'Lifetime', bill_lifetime_badge:'One-time',
+    free_name:'Free', free_period:'forever', free_f1:'Search & browse neighborhoods', free_f2:'Full 6-dimension vibe report', free_f3:'Bookmarks & history', free_f4:'8 UI languages', free_f5:'Works completely offline', free_btn:'Download Free',
+    pro_popular:'Most Popular', pro_best:'★ Best Value', pro_period_monthly:'/month', pro_period_annual:'/year', pro_period_lifetime:'one-time',
+    pro_f1:'Everything in Free', pro_f2:'Find similar neighborhoods', pro_f3:'Side-by-side comparison', pro_f4:'PDF export', pro_f5:'Save analysis presets', pro_f6:'Priority email support', pro_btn:'Get Pro →',
+    price_contact:'Have questions?',
+    faq_tag:'FAQ', faq_title:'Common questions',
+    faq1_q:'Does it work without an internet connection?', faq1_a:'Yes — after installation the analysis engine runs fully offline. Map tiles need an internet connection to display, but all neighborhood data, scoring, and search runs locally. Nothing is sent to any server.',
+    faq2_q:'Which cities and countries are included?', faq2_a:'The dataset covers 68,000+ cities across 200+ countries, sourced from GeoNames and OpenStreetMap. Coverage is strongest where OSM contributors have mapped points of interest thoroughly — generally urban areas in Europe, East Asia, and the Americas.',
+    faq3_q:'How is the data collected and updated?', faq3_a:'Point-of-interest data comes from OpenStreetMap. City metadata comes from GeoNames. No proprietary, government, or commercial data sources are used. The dataset is rebuilt periodically.',
+    faq4_q:'How does the Pro license work? Do I need an account?', faq4_a:'No account required. After purchase via Polar, you receive a license key by email. Paste it into Settings → License in the app. One key activates one machine at a time; you can deactivate it to move to another device.',
+    faq5_q:'Is macOS supported?', faq5_a:'Windows 10 and 11 are supported. macOS support is something we\'re working toward. If you\'re on macOS and want to be notified, send us an email at hello@eodi.me.',
+    faq6_q:'What does the hexagon grid represent?', faq6_a:'The city is divided into a uniform grid of hexagonal cells using the H3 system (resolution 8 — roughly 0.7 km² per cell). Each hexagon is evaluated based on points of interest within and nearby it. The grid makes it easier to compare adjacent areas fairly.',
+    about_tag:'About', about_title:'A small independent tool', about_body:"eodi.me is a small independent product. We built it because we wanted something like this and it didn't exist in a form we were happy with. If you find it useful, the Pro plan is how we keep working on it. If you find a bug, email us — we read everything.",
+    footer_privacy:'Privacy Policy', footer_terms:'Terms', footer_contact:'Contact',
+  },
+  ko: {
+    nav_features:'기능', nav_pricing:'가격', nav_faq:'FAQ', nav_download:'무료 다운로드 →', nav_download_text:'다운로드',
+    hero_badge:'✦ 무료 다운로드 · 계정 불필요',
+    hero_h1:'도착하기 전에<br /><span>동네</span>를 먼저 탐색하세요',
+    hero_sub:'음식, 교통, 녹지, 나이트라이프 등 그 지역이 실제로 어떤 곳인지 확인하세요. 인터넷 없이 내 기기에서 실행됩니다.',
+    hero_dl:'⬇ 무료 다운로드', hero_learn:'자세히 알아보기 →',
+    hero_note:'Windows 10/11 · 데이터는 내 기기에 저장 · 8개 UI 언어',
+    stat_cities:'전 세계 도시', stat_countries:'지원 국가', stat_dims:'바이브 차원', stat_langs:'UI 언어', stat_offline:'완전 오프라인',
+    ss_tag:'앱 소개', ss_title:'모든 도시에 헥사곤 그리드', ss_sub:'도시를 검색하면 각 동네가 고유한 색으로 표시됩니다. 헥사곤을 클릭하면 상세 분석 결과를 볼 수 있습니다.',
+    feat_tag:'주요 기능', feat_title:'이런 것들을 잘 해요', feat_sub:'이사, 여행, 거점 선정 — 장소를 결정하기 전에 먼저 파악하고 싶은 분들을 위해 만들었습니다.',
+    f1_title:'완전 오프라인', f1_desc:'분석 엔진이 내 기기에서 실행됩니다. 설치 후 인터넷 불필요. 검색 기록, 북마크, 메모는 외부로 전송되지 않습니다.',
+    f2_title:'동네 단위 분석', f2_desc:'도시를 작은 헥사곤 셀로 나눕니다. 걸어다닐 수 있는 동네 크기로, 각 셀이 주변 환경에 따라 평가됩니다.',
+    f3_title:'유사한 동네 찾기', f3_desc:'마음에 드는 동네를 선택하면 전 세계에서 비슷한 분위기의 지역을 찾아줍니다. 낯선 곳으로 이사할 때 유용합니다.',
+    f4_title:'나란히 비교', f4_desc:'두 동네를 선택해 각 차원별로 정확히 어떻게 다른지 확인합니다. 후보를 좁혔을 때 유용합니다.',
+    f5_title:'글로벌 커버리지', f5_desc:'아시아, 유럽, 아메리카, 아프리카, 오세아니아 — OpenStreetMap 데이터가 충분한 곳이라면 어디든 지원합니다.',
+    f6_title:'PDF 내보내기', f6_desc:'동네 분석 리포트를 PDF로 저장합니다. 장소 결정을 다른 사람에게 설명하거나 기록으로 남길 때 유용합니다.',
+    dim_tag:'측정 항목', dim_title:'6가지 바이브 차원', dim_sub:'OpenStreetMap의 관심 지점(POI) 데이터를 기반으로 일상생활 6개 측면을 평가합니다. 실제로 존재하는 것을 반영하며, 주관적 의견이나 독점 데이터가 아닙니다.',
+    dim_food:'음식 & 카페', dim_culture:'문화', dim_night:'나이트라이프', dim_green:'녹지', dim_transit:'교통', dim_commerce:'상업',
+    dim_note:'범죄율, 소득 수준, 부동산 가격, 인구 통계 특성은 측정하지 않습니다. 결과는 다른 지역 대비 POI 밀도를 반영하며 절대 품질 평가가 아닙니다.',
+    price_tag:'가격', price_title:'계정 없이 무료로 시작', price_sub:'핵심 기능을 무료로 사용하세요. Pro는 심층 분석 도구를 추가로 제공하며 라이선스 키로 활성화됩니다 — 회원가입 불필요.',
+    bill_monthly:'월간', bill_annual:'연간', bill_annual_badge:'약 35% 절약', bill_lifetime:'평생', bill_lifetime_badge:'일회 결제',
+    free_name:'무료', free_period:'영구', free_f1:'동네 검색 및 탐색', free_f2:'6차원 바이브 리포트', free_f3:'북마크 & 히스토리', free_f4:'8개 UI 언어', free_f5:'완전 오프라인 작동', free_btn:'무료 다운로드',
+    pro_popular:'인기', pro_best:'★ 최고의 선택', pro_period_monthly:'/월', pro_period_annual:'/년', pro_period_lifetime:'평생',
+    pro_f1:'무료 플랜 모든 기능', pro_f2:'유사한 동네 찾기', pro_f3:'나란히 비교', pro_f4:'PDF 내보내기', pro_f5:'분석 프리셋 저장', pro_f6:'이메일 우선 지원', pro_btn:'Pro 구매 →',
+    price_contact:'궁금한 점이 있으신가요?',
+    faq_tag:'자주 묻는 질문', faq_title:'자주 묻는 질문',
+    faq1_q:'인터넷 없이도 사용할 수 있나요?', faq1_a:'네 — 설치 후 분석 엔진은 완전히 오프라인으로 실행됩니다. 지도 타일은 인터넷이 필요하지만, 동네 데이터, 분석, 검색은 모두 로컬에서 실행됩니다.',
+    faq2_q:'어떤 도시와 국가가 포함되어 있나요?', faq2_a:'GeoNames와 OpenStreetMap에서 수집한 200개 이상 국가의 68,000개 이상 도시를 커버합니다. OSM 기여자들이 관심 지점을 충분히 매핑한 지역에서 커버리지가 가장 강합니다.',
+    faq3_q:'데이터는 어떻게 수집되고 업데이트되나요?', faq3_a:'관심 지점 데이터는 OpenStreetMap에서, 도시 메타데이터는 GeoNames에서 가져옵니다. 독점, 정부, 상업 데이터 소스는 사용하지 않습니다. 데이터셋은 주기적으로 재구축됩니다.',
+    faq4_q:'Pro 라이선스는 어떻게 작동하나요? 계정이 필요한가요?', faq4_a:'계정 불필요합니다. Polar에서 구매 후 이메일로 라이선스 키를 받습니다. 앱의 설정 → 라이선스에 붙여넣으면 됩니다. 한 번에 한 기기에서만 사용 가능하며 다른 기기로 이동할 수 있습니다.',
+    faq5_q:'macOS를 지원하나요?', faq5_a:'Windows 10 및 11을 지원합니다. macOS 지원은 작업 중입니다. macOS에서 사용을 원하신다면 hello@eodi.me로 연락해 주세요.',
+    faq6_q:'헥사곤 그리드는 무엇을 나타내나요?', faq6_a:'H3 시스템(해상도 8 — 셀당 약 0.7 km²)을 사용해 도시를 균일한 헥사곤 셀 그리드로 나눕니다. 각 헥사곤은 주변 관심 지점을 기반으로 평가됩니다.',
+    about_tag:'소개', about_title:'소규모 독립 도구', about_body:'eodi.me는 소규모 독립 제품입니다. 이런 게 있었으면 했는데 마음에 드는 형태로 존재하지 않아서 직접 만들었습니다. 유용하다고 느끼신다면 Pro 플랜이 저희가 계속 개발할 수 있는 방법입니다. 버그를 발견하면 이메일 주세요 — 모두 읽고 있습니다.',
+    footer_privacy:'개인정보처리방침', footer_terms:'이용약관', footer_contact:'문의',
+  },
+  ja: {
+    nav_features:'機能', nav_pricing:'料金', nav_faq:'FAQ', nav_download:'無料ダウンロード →', nav_download_text:'ダウンロード',
+    hero_badge:'✦ 無料ダウンロード · アカウント不要',
+    hero_h1:'到着する前に<br /><span>街</span>を探索しよう',
+    hero_sub:'食事、交通、緑地、ナイトライフなど、実際の雰囲気をチェック。オフラインで自分のデバイスで動作します。',
+    hero_dl:'⬇ 無料ダウンロード', hero_learn:'詳細を見る →',
+    hero_note:'Windows 10/11 · データはデバイスに保存 · 8言語対応',
+    stat_cities:'世界の都市', stat_countries:'対応国', stat_dims:'バイブ次元', stat_langs:'UI言語', stat_offline:'オフライン対応',
+    ss_tag:'アプリ紹介', ss_title:'あらゆる都市にヘキサゴングリッド', ss_sub:'都市を検索すると各エリアが固有の色で表示されます。ヘキサゴンをクリックして詳細を確認できます。',
+    feat_tag:'主な機能', feat_title:'得意なこと', feat_sub:'引越し、旅行、拠点選び — 決める前に場所を理解したい方のために作りました。',
+    f1_title:'完全オフライン', f1_desc:'分析エンジンはデバイス上で動作します。インストール後はインターネット不要。検索履歴、ブックマーク、メモは外部に送信されません。',
+    f2_title:'街区レベルの詳細', f2_desc:'都市を小さなヘキサゴンセルに分割します。徒歩圏内の街区サイズで、周辺環境に基づいて評価されます。',
+    f3_title:'似たエリアを探す', f3_desc:'気に入ったエリアを選ぶと、世界中から似た雰囲気の場所を探します。知らない街に引越すときに便利です。',
+    f4_title:'並べて比較', f4_desc:'2つのエリアを選択し、各次元で正確にどう違うかを確認します。',
+    f5_title:'グローバルカバレッジ', f5_desc:'アジア、ヨーロッパ、南北アメリカ、アフリカ、オセアニア — OpenStreetMapにデータがあればどこでも対応します。',
+    f6_title:'PDFエクスポート', f6_desc:'エリアのバイブレポートをPDFで保存できます。',
+    dim_tag:'測定項目', dim_title:'6つのバイブ次元', dim_sub:'OpenStreetMapのPOIデータに基づき、日常生活の6側面を評価します。実際に存在するものを反映しており、主観や独自データではありません。',
+    dim_food:'飲食', dim_culture:'文化', dim_night:'ナイトライフ', dim_green:'緑地', dim_transit:'交通', dim_commerce:'商業',
+    dim_note:'犯罪率、所得水準、不動産価格、人口統計特性は測定しません。結果は他のエリアとのPOI密度の比較を反映しており、絶対的な品質評価ではありません。',
+    price_tag:'料金', price_title:'アカウント不要で無料スタート', price_sub:'コア機能は無料。ProはライセンスキーでアクティベートでUnlock — サインアップ不要。',
+    bill_monthly:'月払い', bill_annual:'年払い', bill_annual_badge:'約35%お得', bill_lifetime:'買い切り', bill_lifetime_badge:'一回払い',
+    free_name:'無料', free_period:'永久', free_f1:'街区の検索＆閲覧', free_f2:'6次元バイブレポート', free_f3:'ブックマーク＆履歴', free_f4:'8言語UI', free_f5:'完全オフライン動作', free_btn:'無料ダウンロード',
+    pro_popular:'人気', pro_best:'★ ベストバリュー', pro_period_monthly:'/月', pro_period_annual:'/年', pro_period_lifetime:'買い切り',
+    pro_f1:'無料プランのすべて', pro_f2:'似たエリアを探す', pro_f3:'並べて比較', pro_f4:'PDFエクスポート', pro_f5:'分析プリセット保存', pro_f6:'優先メールサポート', pro_btn:'Proを購入 →',
+    price_contact:'ご質問はこちら',
+    faq_tag:'よくある質問', faq_title:'よくある質問',
+    faq1_q:'インターネットなしで使えますか？', faq1_a:'はい — インストール後、分析エンジンは完全オフラインで動作します。地図タイルにはインターネットが必要ですが、データ・分析・検索はすべてローカルで実行されます。',
+    faq2_q:'どの都市・国が含まれますか？', faq2_a:'GeoNamesとOpenStreetMapから収集した200カ国以上の68,000都市以上をカバーします。',
+    faq3_q:'データはどのように収集・更新されますか？', faq3_a:'POIデータはOpenStreetMap、都市メタデータはGeoNamesから取得します。独自・政府・商業データは使用しません。定期的に再構築されます。',
+    faq4_q:'Proライセンスはどう機能しますか？アカウントは必要ですか？', faq4_a:'アカウント不要です。Polarで購入後、メールでライセンスキーを受け取ります。設定→ライセンスに貼り付けてください。',
+    faq5_q:'macOSは対応していますか？', faq5_a:'Windows 10・11をサポートしています。macOSサポートは開発中です。macOSをお使いの方はhello@eodi.meまでご連絡ください。',
+    faq6_q:'ヘキサゴングリッドは何を表しますか？', faq6_a:'H3システム（解像度8、1セル約0.7 km²）を使用して都市を均一なヘキサゴンに分割します。各セルは周辺のPOIに基づいて評価されます。',
+    about_tag:'について', about_title:'小さな独立ツール', about_body:'eodi.meは小規模な独立プロダクトです。こういうものが欲しかったけど、満足できる形のものがなかったので作りました。役立てていただけたなら、Proプランがあります。バグを見つけたらメールください — すべて読んでいます。',
+    footer_privacy:'プライバシーポリシー', footer_terms:'利用規約', footer_contact:'お問い合わせ',
+  },
+  zh: {
+    nav_features:'功能', nav_pricing:'价格', nav_faq:'常见问题', nav_download:'免费下载 →', nav_download_text:'下载',
+    hero_badge:'✦ 免费下载 · 无需账户',
+    hero_h1:'到达之前<br />先探索<span>街区</span>',
+    hero_sub:'了解每个区域的真实情况——餐饮、交通、绿地、夜生活等。完全离线运行在您的设备上。',
+    hero_dl:'⬇ 免费下载', hero_learn:'了解更多 →',
+    hero_note:'Windows 10/11 · 数据保存在设备上 · 支持8种界面语言',
+    stat_cities:'全球城市', stat_countries:'覆盖国家', stat_dims:'氛围维度', stat_langs:'界面语言', stat_offline:'离线可用',
+    ss_tag:'应用介绍', ss_title:'在任何城市显示六边形网格', ss_sub:'搜索城市后，每个街区以独特颜色显示。点击任意六边形查看详细分析。',
+    feat_tag:'主要功能', feat_title:'擅长的事情', feat_sub:'为那些在决定之前想了解一个地方的人而设计——无论是搬家、旅行还是选址。',
+    f1_title:'完全离线', f1_desc:'分析引擎完全在您的设备上运行。安装后无需网络。搜索记录、书签和笔记不会离开您的设备。',
+    f2_title:'街区级详情', f2_desc:'城市被分割成小六边形单元——大约是步行可达的街区大小。每个单元根据周边环境进行评估。',
+    f3_title:'发现相似地方', f3_desc:'选择您熟悉喜欢的街区，应用在全球范围内找到氛围相似的地方。',
+    f4_title:'并排比较', f4_desc:'选择两个街区，查看它们在每个维度上的具体差异。',
+    f5_title:'全球覆盖', f5_desc:'亚洲、欧洲、美洲、非洲、大洋洲——只要OpenStreetMap有足够数据的地方都可使用。',
+    f6_title:'导出PDF', f6_desc:'将任何街区的完整氛围报告保存为PDF。',
+    dim_tag:'测量内容', dim_title:'六个氛围维度', dim_sub:'基于OpenStreetMap的兴趣点数据，对日常生活的六个方面进行评估。反映实际存在的内容，而非主观意见。',
+    dim_food:'餐饮', dim_culture:'文化', dim_night:'夜生活', dim_green:'绿地', dim_transit:'交通', dim_commerce:'商业',
+    dim_note:'我们不测量犯罪率、收入水平、房价或任何人口统计特征。结果反映相对于其他地区的兴趣点密度，而非绝对质量判断。',
+    price_tag:'价格', price_title:'免费开始，无需账户', price_sub:'免费使用核心功能。Pro通过许可证密钥解锁深度分析工具——无需注册。',
+    bill_monthly:'按月', bill_annual:'按年', bill_annual_badge:'节省约35%', bill_lifetime:'终身', bill_lifetime_badge:'一次付清',
+    free_name:'免费', free_period:'永久', free_f1:'搜索和浏览街区', free_f2:'完整6维度氛围报告', free_f3:'书签和历史', free_f4:'8种界面语言', free_f5:'完全离线使用', free_btn:'免费下载',
+    pro_popular:'最受欢迎', pro_best:'★ 最佳选择', pro_period_monthly:'/月', pro_period_annual:'/年', pro_period_lifetime:'终身',
+    pro_f1:'免费版全部功能', pro_f2:'发现相似街区', pro_f3:'并排比较', pro_f4:'PDF导出', pro_f5:'保存分析预设', pro_f6:'优先邮件支持', pro_btn:'购买Pro →',
+    price_contact:'有疑问？',
+    faq_tag:'常见问题', faq_title:'常见问题',
+    faq1_q:'没有网络也能使用吗？', faq1_a:'可以——安装后分析引擎完全离线运行。地图图块需要网络，但所有街区数据、评分和搜索均在本地运行。',
+    faq2_q:'包含哪些城市和国家？', faq2_a:'涵盖200多个国家68,000多个城市，数据来自GeoNames和OpenStreetMap。',
+    faq3_q:'数据如何收集和更新？', faq3_a:'兴趣点数据来自OpenStreetMap，城市元数据来自GeoNames。不使用任何专有、政府或商业数据源，定期重建数据集。',
+    faq4_q:'Pro许可证如何工作？需要账户吗？', faq4_a:'无需账户。通过Polar购买后，您将收到许可证密钥邮件。粘贴到应用的设置→许可证中即可。',
+    faq5_q:'支持macOS吗？', faq5_a:'支持Windows 10和11。macOS支持正在开发中。如需通知请发邮件至hello@eodi.me。',
+    faq6_q:'六边形网格代表什么？', faq6_a:'使用H3系统（分辨率8，每格约0.7平方公里）将城市分割为均匀的六边形网格。每个六边形根据周边兴趣点进行评估。',
+    about_tag:'关于', about_title:'小型独立工具', about_body:'eodi.me是一个小型独立产品。我们开发它是因为想要这样的东西，但市面上没有令人满意的形式。如果您觉得有用，Pro计划是我们继续开发的方式。发现问题请发邮件——我们会阅读所有邮件。',
+    footer_privacy:'隐私政策', footer_terms:'服务条款', footer_contact:'联系我们',
+  },
+  es: {
+    nav_features:'Funciones', nav_pricing:'Precios', nav_faq:'FAQ', nav_download:'Descargar gratis →', nav_download_text:'Descargar',
+    hero_badge:'✦ Descarga gratuita · Sin cuenta',
+    hero_h1:'Explora el barrio<br />antes de <span>llegar</span>',
+    hero_sub:'Descubre cómo es realmente cada zona — comida, transporte, zonas verdes, vida nocturna y más. Funciona sin conexión en tu dispositivo.',
+    hero_dl:'⬇ Descargar gratis', hero_learn:'Saber más →',
+    hero_note:'Windows 10/11 · Datos en tu dispositivo · 8 idiomas de interfaz',
+    stat_cities:'Ciudades en el mundo', stat_countries:'Países cubiertos', stat_dims:'Dimensiones de vibe', stat_langs:'Idiomas de UI', stat_offline:'Modo sin conexión',
+    ss_tag:'La app', ss_title:'Cuadrícula hexagonal sobre cualquier ciudad', ss_sub:'Busca una ciudad y cada barrio se ilumina con su propio color. Haz clic en cualquier hexágono para ver el análisis completo.',
+    feat_tag:'Qué hace', feat_title:'En qué es buena', feat_sub:'La creamos para personas que quieren entender un lugar antes de comprometerse — ya sea una mudanza, un viaje o una decisión de ubicación.',
+    f1_title:'Totalmente offline', f1_desc:'El motor de análisis funciona en tu dispositivo. Sin internet tras la instalación. Tus búsquedas y marcadores no salen de tu máquina.',
+    f2_title:'Detalle a nivel de barrio', f2_desc:'Las ciudades se dividen en pequeñas celdas hexagonales — del tamaño de un barrio a pie. Cada celda se evalúa según lo que hay cerca.',
+    f3_title:'Encontrar lugares similares', f3_desc:'Elige un barrio que conozcas y te guste. La app encuentra zonas similares en cualquier parte del mundo.',
+    f4_title:'Comparar lado a lado', f4_desc:'Selecciona dos barrios y ve exactamente cómo difieren en cada dimensión.',
+    f5_title:'Cobertura global', f5_desc:'Asia, Europa, Américas, África, Oceanía — donde OpenStreetMap tenga datos suficientes.',
+    f6_title:'Exportar a PDF', f6_desc:'Guarda un informe completo de cualquier barrio como PDF.',
+    dim_tag:'Qué medimos', dim_title:'Seis dimensiones de vibe', dim_sub:'Cada barrio se evalúa en seis aspectos de la vida cotidiana, basados en datos de OpenStreetMap. Refleja lo que realmente existe, no opiniones.',
+    dim_food:'Comida y bebida', dim_culture:'Cultura', dim_night:'Vida nocturna', dim_green:'Zonas verdes', dim_transit:'Transporte', dim_commerce:'Comercio',
+    dim_note:'No medimos tasas de criminalidad, ingresos, precios inmobiliarios ni características demográficas. Los resultados reflejan densidad de POI relativa — no juicios de calidad absolutos.',
+    price_tag:'Precios', price_title:'Empieza gratis, sin cuenta', price_sub:'Usa las funciones principales gratis. Pro desbloquea herramientas de análisis avanzadas con una clave de licencia — sin registro.',
+    bill_monthly:'Mensual', bill_annual:'Anual', bill_annual_badge:'Ahorra ~35%', bill_lifetime:'De por vida', bill_lifetime_badge:'Pago único',
+    free_name:'Gratis', free_period:'para siempre', free_f1:'Buscar y explorar barrios', free_f2:'Informe completo de 6 dimensiones', free_f3:'Marcadores e historial', free_f4:'8 idiomas de UI', free_f5:'Funciona completamente offline', free_btn:'Descargar gratis',
+    pro_popular:'Más popular', pro_best:'★ Mejor valor', pro_period_monthly:'/mes', pro_period_annual:'/año', pro_period_lifetime:'de por vida',
+    pro_f1:'Todo lo de Gratis', pro_f2:'Encontrar barrios similares', pro_f3:'Comparación lado a lado', pro_f4:'Exportar PDF', pro_f5:'Guardar presets de análisis', pro_f6:'Soporte prioritario por email', pro_btn:'Obtener Pro →',
+    price_contact:'¿Tienes preguntas?',
+    faq_tag:'FAQ', faq_title:'Preguntas frecuentes',
+    faq1_q:'¿Funciona sin conexión a internet?', faq1_a:'Sí — tras la instalación, el motor funciona completamente offline. Los mapas necesitan internet, pero todos los datos, análisis y búsquedas se ejecutan localmente.',
+    faq2_q:'¿Qué ciudades y países están incluidos?', faq2_a:'Cubre más de 68.000 ciudades en más de 200 países de GeoNames y OpenStreetMap.',
+    faq3_q:'¿Cómo se recopilan y actualizan los datos?', faq3_a:'Los datos de POI provienen de OpenStreetMap y los metadatos de ciudades de GeoNames. No se usan fuentes propietarias ni comerciales. El conjunto se reconstruye periódicamente.',
+    faq4_q:'¿Cómo funciona la licencia Pro? ¿Necesito cuenta?', faq4_a:'Sin cuenta. Tras la compra en Polar recibes una clave por email. Pégala en Ajustes → Licencia en la app.',
+    faq5_q:'¿Hay soporte para macOS?', faq5_a:'Se admite Windows 10 y 11. El soporte para macOS está en desarrollo. Si usas macOS, escríbenos a hello@eodi.me.',
+    faq6_q:'¿Qué representa la cuadrícula hexagonal?', faq6_a:'La ciudad se divide en celdas hexagonales uniformes con el sistema H3 (resolución 8, aprox. 0,7 km² por celda). Cada hexágono se evalúa según los POI cercanos.',
+    about_tag:'Acerca de', about_title:'Una herramienta independiente', about_body:'eodi.me es un producto independiente y pequeño. Lo creamos porque queríamos algo así y no existía en la forma que nos satisfacía. Si te resulta útil, el plan Pro es cómo seguimos desarrollándolo. Si encuentras un error, escríbenos.',
+    footer_privacy:'Política de privacidad', footer_terms:'Términos', footer_contact:'Contacto',
+  },
+  fr: {
+    nav_features:'Fonctionnalités', nav_pricing:'Tarifs', nav_faq:'FAQ', nav_download:'Télécharger gratuitement →', nav_download_text:'Télécharger',
+    hero_badge:'✦ Téléchargement gratuit · Sans compte',
+    hero_h1:'Explorez un quartier<br />avant d'<span>arriver</span>',
+    hero_sub:'Découvrez la vraie nature d'un quartier — restaurants, transports, espaces verts, vie nocturne et plus. Fonctionne hors ligne sur votre appareil.',
+    hero_dl:'⬇ Télécharger gratuitement', hero_learn:'En savoir plus →',
+    hero_note:'Windows 10/11 · Données sur votre appareil · 8 langues d'interface',
+    stat_cities:'Villes dans le monde', stat_countries:'Pays couverts', stat_dims:'Dimensions de vibe', stat_langs:'Langues UI', stat_offline:'Mode hors ligne',
+    ss_tag:'L'application', ss_title:'Grille hexagonale sur n'importe quelle ville', ss_sub:'Recherchez une ville et chaque quartier s'illumine de sa propre couleur. Cliquez sur un hexagone pour voir l'analyse complète.',
+    feat_tag:'Ce que ça fait', feat_title:'Quelques points forts', feat_sub:'Conçu pour ceux qui veulent comprendre un lieu avant de s'y engager — déménagement, voyage ou décision d'implantation.',
+    f1_title:'Entièrement hors ligne', f1_desc:'Le moteur d'analyse tourne sur votre appareil. Pas d'internet requis après l'installation. Vos recherches et favoris ne quittent jamais votre machine.',
+    f2_title:'Détail au niveau du quartier', f2_desc:'Les villes sont divisées en petites cellules hexagonales — environ la taille d'un quartier à pied. Chaque cellule est évaluée selon son environnement.',
+    f3_title:'Trouver des lieux similaires', f3_desc:'Choisissez un quartier que vous aimez. L'appli trouve des zones similaires dans le monde entier.',
+    f4_title:'Comparer côte à côte', f4_desc:'Sélectionnez deux quartiers et voyez exactement en quoi ils diffèrent.',
+    f5_title:'Couverture mondiale', f5_desc:'Asie, Europe, Amériques, Afrique, Océanie — partout où OpenStreetMap dispose de données suffisantes.',
+    f6_title:'Export PDF', f6_desc:'Enregistrez un rapport complet d'un quartier en PDF.',
+    dim_tag:'Ce que nous mesurons', dim_title:'Six dimensions de vibe', dim_sub:'Chaque quartier est évalué sur six aspects de la vie quotidienne à partir des données OpenStreetMap. Cela reflète ce qui existe physiquement, pas des opinions.',
+    dim_food:'Restauration', dim_culture:'Culture', dim_night:'Vie nocturne', dim_green:'Espaces verts', dim_transit:'Transports', dim_commerce:'Commerce',
+    dim_note:'Nous ne mesurons pas les taux de criminalité, niveaux de revenus, prix immobiliers ni caractéristiques démographiques. Les résultats reflètent la densité de POI relative — pas des jugements de qualité absolus.',
+    price_tag:'Tarifs', price_title:'Démarrez gratuitement, sans compte', price_sub:'Utilisez les fonctionnalités principales gratuitement. Pro débloque des outils d'analyse avancés — activé par clé de licence, sans inscription.',
+    bill_monthly:'Mensuel', bill_annual:'Annuel', bill_annual_badge:'Économisez ~35%', bill_lifetime:'À vie', bill_lifetime_badge:'Paiement unique',
+    free_name:'Gratuit', free_period:'pour toujours', free_f1:'Rechercher et parcourir les quartiers', free_f2:'Rapport complet 6 dimensions', free_f3:'Favoris et historique', free_f4:'8 langues UI', free_f5:'Fonctionne entièrement hors ligne', free_btn:'Télécharger gratuitement',
+    pro_popular:'Le plus populaire', pro_best:'★ Meilleur rapport qualité-prix', pro_period_monthly:'/mois', pro_period_annual:'/an', pro_period_lifetime:'à vie',
+    pro_f1:'Tout le plan Gratuit', pro_f2:'Trouver des quartiers similaires', pro_f3:'Comparaison côte à côte', pro_f4:'Export PDF', pro_f5:'Sauvegarder des présets d'analyse', pro_f6:'Support email prioritaire', pro_btn:'Obtenir Pro →',
+    price_contact:'Des questions ?',
+    faq_tag:'FAQ', faq_title:'Questions fréquentes',
+    faq1_q:'Fonctionne-t-il sans connexion internet ?', faq1_a:'Oui — après l'installation, le moteur fonctionne entièrement hors ligne. Les tuiles de carte nécessitent internet, mais toutes les données, scores et recherches sont locaux.',
+    faq2_q:'Quelles villes et pays sont inclus ?', faq2_a:'Plus de 68 000 villes dans plus de 200 pays, issues de GeoNames et OpenStreetMap.',
+    faq3_q:'Comment les données sont-elles collectées et mises à jour ?', faq3_a:'Les données POI viennent d'OpenStreetMap, les métadonnées des villes de GeoNames. Pas de sources propriétaires ou commerciales. L'ensemble est reconstruit périodiquement.',
+    faq4_q:'Comment fonctionne la licence Pro ? Faut-il un compte ?', faq4_a:'Aucun compte requis. Après l'achat sur Polar, vous recevez une clé de licence par email. Collez-la dans Paramètres → Licence dans l'appli.',
+    faq5_q:'macOS est-il pris en charge ?', faq5_a:'Windows 10 et 11 sont pris en charge. Le support macOS est en cours de développement. Écrivez-nous à hello@eodi.me si vous souhaitez être notifié.',
+    faq6_q:'Que représente la grille hexagonale ?', faq6_a:'La ville est divisée en cellules hexagonales uniformes via le système H3 (résolution 8, environ 0,7 km² par cellule). Chaque hexagone est évalué selon les POI environnants.',
+    about_tag:'À propos', about_title:'Un petit outil indépendant', about_body:'eodi.me est un produit indépendant. Nous l'avons créé parce que nous voulions quelque chose comme ça et ça n'existait pas sous une forme satisfaisante. Si vous le trouvez utile, le plan Pro est notre moyen de continuer. Signalez les bugs par email — nous lisons tout.',
+    footer_privacy:'Politique de confidentialité', footer_terms:'CGU', footer_contact:'Contact',
+  },
+  de: {
+    nav_features:'Funktionen', nav_pricing:'Preise', nav_faq:'FAQ', nav_download:'Kostenlos herunterladen →', nav_download_text:'Herunterladen',
+    hero_badge:'✦ Kostenloser Download · Kein Konto nötig',
+    hero_h1:'Erkundige ein Viertel<br />bevor du <span>ankommst</span>',
+    hero_sub:'Sieh, wie ein Viertel wirklich ist — Restaurants, Verkehr, Grünflächen, Nachtleben und mehr. Läuft offline auf deinem Gerät.',
+    hero_dl:'⬇ Kostenlos herunterladen', hero_learn:'Mehr erfahren →',
+    hero_note:'Windows 10/11 · Daten bleiben auf deinem Gerät · 8 UI-Sprachen',
+    stat_cities:'Städte weltweit', stat_countries:'Abgedeckte Länder', stat_dims:'Vibe-Dimensionen', stat_langs:'UI-Sprachen', stat_offline:'Offline-fähig',
+    ss_tag:'Die App', ss_title:'Hexagon-Raster über jede Stadt', ss_sub:'Suche eine Stadt und jedes Viertel leuchtet in seiner eigenen Farbe auf. Klicke auf ein Hexagon für eine vollständige Analyse.',
+    feat_tag:'Was sie tut', feat_title:'Ein paar Stärken', feat_sub:'Entwickelt für Menschen, die einen Ort verstehen wollen, bevor sie sich festlegen — Umzug, Reise oder Standortentscheidung.',
+    f1_title:'Vollständig offline', f1_desc:'Die Analyse-Engine läuft auf deinem Gerät. Nach der Installation kein Internet nötig. Suchen, Lesezeichen und Notizen verlassen dein Gerät nie.',
+    f2_title:'Detailgenauigkeit auf Viertelebene', f2_desc:'Städte werden in kleine hexagonale Zellen aufgeteilt — etwa die Größe eines fußläufigen Viertels. Jede Zelle wird anhand der Umgebung bewertet.',
+    f3_title:'Ähnliche Orte finden', f3_desc:'Wähle ein Viertel, das du kennst und magst. Die App findet weltweit ähnliche Gebiete.',
+    f4_title:'Nebeneinander vergleichen', f4_desc:'Wähle zwei Viertel und sieh genau, wie sie sich in jeder Dimension unterscheiden.',
+    f5_title:'Globale Abdeckung', f5_desc:'Asien, Europa, Amerika, Afrika, Ozeanien — überall wo OpenStreetMap ausreichend Daten hat.',
+    f6_title:'PDF-Export', f6_desc:'Speichere einen vollständigen Vibe-Bericht als PDF.',
+    dim_tag:'Was wir messen', dim_title:'Sechs Vibe-Dimensionen', dim_sub:'Jedes Viertel wird anhand von OpenStreetMap-POI-Daten in sechs Alltagsbereichen bewertet. Spiegelt wider, was tatsächlich vorhanden ist — keine Meinungen.',
+    dim_food:'Essen & Trinken', dim_culture:'Kultur', dim_night:'Nachtleben', dim_green:'Grünflächen', dim_transit:'Verkehr', dim_commerce:'Handel',
+    dim_note:'Wir messen keine Kriminalitätsraten, Einkommensniveaus, Immobilienpreise oder demografischen Merkmale. Die Ergebnisse spiegeln die POI-Dichte relativ zu anderen Gebieten wider.',
+    price_tag:'Preise', price_title:'Kostenlos starten, kein Konto nötig', price_sub:'Kernfunktionen kostenlos nutzen. Pro schaltet erweiterte Analyse-Tools per Lizenzschlüssel frei — ohne Registrierung.',
+    bill_monthly:'Monatlich', bill_annual:'Jährlich', bill_annual_badge:'Ca. 35% sparen', bill_lifetime:'Einmalig', bill_lifetime_badge:'Einmalzahlung',
+    free_name:'Kostenlos', free_period:'für immer', free_f1:'Viertel suchen und erkunden', free_f2:'Vollständiger 6-Dimensionen-Bericht', free_f3:'Lesezeichen & Verlauf', free_f4:'8 UI-Sprachen', free_f5:'Vollständig offline', free_btn:'Kostenlos herunterladen',
+    pro_popular:'Beliebteste', pro_best:'★ Bestes Preis-Leistungs-Verhältnis', pro_period_monthly:'/Monat', pro_period_annual:'/Jahr', pro_period_lifetime:'einmalig',
+    pro_f1:'Alles aus Kostenlos', pro_f2:'Ähnliche Viertel finden', pro_f3:'Nebeneinander-Vergleich', pro_f4:'PDF-Export', pro_f5:'Analyse-Presets speichern', pro_f6:'Priorisierter E-Mail-Support', pro_btn:'Pro erhalten →',
+    price_contact:'Fragen?',
+    faq_tag:'FAQ', faq_title:'Häufige Fragen',
+    faq1_q:'Funktioniert es ohne Internetverbindung?', faq1_a:'Ja — nach der Installation läuft die Analyse-Engine vollständig offline. Kartenkacheln benötigen Internet, aber alle Daten, Bewertungen und Suchen laufen lokal.',
+    faq2_q:'Welche Städte und Länder sind enthalten?', faq2_a:'Über 68.000 Städte in mehr als 200 Ländern aus GeoNames und OpenStreetMap.',
+    faq3_q:'Wie werden Daten gesammelt und aktualisiert?', faq3_a:'POI-Daten kommen von OpenStreetMap, Stadt-Metadaten von GeoNames. Keine proprietären oder kommerziellen Quellen. Regelmäßige Neuerstellung.',
+    faq4_q:'Wie funktioniert die Pro-Lizenz? Brauche ich ein Konto?', faq4_a:'Kein Konto nötig. Nach dem Kauf bei Polar erhältst du per E-Mail einen Lizenzschlüssel. Füge ihn in Einstellungen → Lizenz ein.',
+    faq5_q:'Wird macOS unterstützt?', faq5_a:'Windows 10 und 11 werden unterstützt. macOS-Unterstützung ist in Arbeit. Schreib uns an hello@eodi.me wenn du benachrichtigt werden möchtest.',
+    faq6_q:'Was stellt das Hexagon-Raster dar?', faq6_a:'Die Stadt wird mit dem H3-System (Auflösung 8, ca. 0,7 km² pro Zelle) in gleichmäßige Hexagone aufgeteilt. Jedes Hexagon wird anhand der umliegenden POIs bewertet.',
+    about_tag:'Über uns', about_title:'Ein kleines unabhängiges Tool', about_body:'eodi.me ist ein kleines unabhängiges Produkt. Wir haben es gebaut, weil wir so etwas wollten und es nicht in befriedigender Form gab. Der Pro-Plan ermöglicht uns die Weiterentwicklung. Bugs bitte per E-Mail melden — wir lesen alles.',
+    footer_privacy:'Datenschutz', footer_terms:'AGB', footer_contact:'Kontakt',
+  },
+  pt: {
+    nav_features:'Funcionalidades', nav_pricing:'Preços', nav_faq:'FAQ', nav_download:'Baixar grátis →', nav_download_text:'Baixar',
+    hero_badge:'✦ Download gratuito · Sem conta necessária',
+    hero_h1:'Explore o bairro<br />antes de <span>chegar</span>',
+    hero_sub:'Veja como cada área realmente é — comida, transporte, espaços verdes, vida noturna e mais. Funciona offline no seu dispositivo.',
+    hero_dl:'⬇ Baixar grátis', hero_learn:'Saiba mais →',
+    hero_note:'Windows 10/11 · Dados no seu dispositivo · 8 idiomas de interface',
+    stat_cities:'Cidades no mundo', stat_countries:'Países cobertos', stat_dims:'Dimensões de vibe', stat_langs:'Idiomas UI', stat_offline:'Modo offline',
+    ss_tag:'O App', ss_title:'Grade hexagonal em qualquer cidade', ss_sub:'Pesquise uma cidade e cada bairro acende com sua própria cor. Clique em qualquer hexágono para ver a análise completa.',
+    feat_tag:'O que faz', feat_title:'Algumas coisas em que é boa', feat_sub:'Criamos para pessoas que querem entender um lugar antes de se comprometer — mudança, viagem ou decisão de localização.',
+    f1_title:'Totalmente offline', f1_desc:'O motor de análise roda no seu dispositivo. Sem internet após a instalação. Suas pesquisas e favoritos nunca saem da sua máquina.',
+    f2_title:'Detalhe ao nível do bairro', f2_desc:'As cidades são divididas em pequenas células hexagonais — do tamanho de um bairro a pé. Cada célula é avaliada com base no que há ao redor.',
+    f3_title:'Encontrar lugares similares', f3_desc:'Escolha um bairro que você conhece e gosta. O app encontra áreas similares em qualquer lugar do mundo.',
+    f4_title:'Comparar lado a lado', f4_desc:'Selecione dois bairros e veja exatamente como diferem em cada dimensão.',
+    f5_title:'Cobertura global', f5_desc:'Ásia, Europa, Américas, África, Oceania — onde o OpenStreetMap tiver dados suficientes.',
+    f6_title:'Exportar para PDF', f6_desc:'Salve um relatório completo de qualquer bairro em PDF.',
+    dim_tag:'O que medimos', dim_title:'Seis dimensões de vibe', dim_sub:'Cada bairro é avaliado em seis aspectos da vida cotidiana com base em dados do OpenStreetMap. Reflete o que realmente existe — não opiniões.',
+    dim_food:'Alimentação', dim_culture:'Cultura', dim_night:'Vida noturna', dim_green:'Espaços verdes', dim_transit:'Transporte', dim_commerce:'Comércio',
+    dim_note:'Não medimos taxas de criminalidade, níveis de renda, preços imobiliários ou características demográficas. Os resultados refletem a densidade de POI relativa — não julgamentos de qualidade absolutos.',
+    price_tag:'Preços', price_title:'Comece grátis, sem conta', price_sub:'Use as funções principais gratuitamente. Pro desbloqueia ferramentas avançadas com uma chave de licença — sem cadastro.',
+    bill_monthly:'Mensal', bill_annual:'Anual', bill_annual_badge:'Economize ~35%', bill_lifetime:'Vitalício', bill_lifetime_badge:'Pagamento único',
+    free_name:'Grátis', free_period:'para sempre', free_f1:'Pesquisar e explorar bairros', free_f2:'Relatório completo de 6 dimensões', free_f3:'Favoritos e histórico', free_f4:'8 idiomas de interface', free_f5:'Funciona completamente offline', free_btn:'Baixar grátis',
+    pro_popular:'Mais popular', pro_best:'★ Melhor custo-benefício', pro_period_monthly:'/mês', pro_period_annual:'/ano', pro_period_lifetime:'vitalício',
+    pro_f1:'Tudo do Grátis', pro_f2:'Encontrar bairros similares', pro_f3:'Comparação lado a lado', pro_f4:'Exportação PDF', pro_f5:'Salvar presets de análise', pro_f6:'Suporte prioritário por email', pro_btn:'Obter Pro →',
+    price_contact:'Tem dúvidas?',
+    faq_tag:'FAQ', faq_title:'Perguntas frequentes',
+    faq1_q:'Funciona sem conexão à internet?', faq1_a:'Sim — após a instalação, o motor de análise funciona completamente offline. Os tiles do mapa precisam de internet, mas todos os dados, análises e buscas são locais.',
+    faq2_q:'Quais cidades e países estão incluídos?', faq2_a:'Mais de 68.000 cidades em mais de 200 países do GeoNames e OpenStreetMap.',
+    faq3_q:'Como os dados são coletados e atualizados?', faq3_a:'Dados de POI vêm do OpenStreetMap, metadados de cidades do GeoNames. Sem fontes proprietárias ou comerciais. O conjunto é reconstruído periodicamente.',
+    faq4_q:'Como funciona a licença Pro? Preciso de conta?', faq4_a:'Sem conta necessária. Após a compra no Polar, você recebe uma chave de licença por email. Cole em Configurações → Licença no app.',
+    faq5_q:'macOS é suportado?', faq5_a:'Windows 10 e 11 são suportados. Suporte a macOS está em desenvolvimento. Escreva para hello@eodi.me se quiser ser notificado.',
+    faq6_q:'O que a grade hexagonal representa?', faq6_a:'A cidade é dividida em células hexagonais uniformes com o sistema H3 (resolução 8, aprox. 0,7 km² por célula). Cada hexágono é avaliado com base nos POIs próximos.',
+    about_tag:'Sobre', about_title:'Uma pequena ferramenta independente', about_body:'eodi.me é um produto independente e pequeno. Construímos porque queríamos algo assim e não existia de forma satisfatória. O plano Pro é como continuamos desenvolvendo. Se encontrar bugs, nos escreva — lemos tudo.',
+    footer_privacy:'Política de privacidade', footer_terms:'Termos', footer_contact:'Contato',
+  },
+};
 
-  function setBilling(cycle) {
-    ['monthly','annual','lifetime'].forEach(function(c) {
-      var btn = document.getElementById('btn-' + c);
-      btn.className = 'toggle-btn' + (c === cycle ? ' active' : '');
-      btn.setAttribute('aria-pressed', c === cycle ? 'true' : 'false');
-    });
-    document.getElementById('price-pro').textContent  = prices[cycle];
-    document.getElementById('period-pro').textContent = periods[cycle];
-    document.getElementById('buy-pro').href = buyLinks[cycle];
-    var lifetimeBadge = document.getElementById('lifetime-best-value');
-    var popularBadge  = document.getElementById('pro-popular');
-    if (lifetimeBadge) lifetimeBadge.style.display = cycle === 'lifetime' ? 'block' : 'none';
-    if (popularBadge)  popularBadge.style.display  = cycle === 'lifetime' ? 'none'  : 'block';
-  }
+// ── Billing links & prices ──────────────────────────────────────────────────
+var buyLinks = {
+  monthly:  'https://buy.polar.sh/polar_cl_Ml6z5FGUF8sfSEz2A0iCZ0gAjWcWJ2YtVTlbS2MRFub',
+  annual:   'https://buy.polar.sh/polar_cl_mlCUP1Juw9Zv82aE8aAs4ZuB04AN8wi4ljlt20lIA0B',
+  lifetime: 'https://buy.polar.sh/polar_cl_UmQmBnM8ztgFZsnWCzkQq20Nayn5NDP1WwYgF12XaWbZ',
+};
+var prices = { monthly: '$3.99', annual: '$29', lifetime: '$49' };
+var currentBilling = 'monthly';
+var currentLang = 'en';
+
+// ── Lang detection ──────────────────────────────────────────────────────────
+function detectLang() {
+  var p = new URLSearchParams(window.location.search).get('lang');
+  if (p && I18N[p]) return p;
+  var ls = localStorage.getItem('eodi_lang');
+  if (ls && I18N[ls]) return ls;
+  var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase().slice(0,2);
+  var map = { ko:'ko', ja:'ja', zh:'zh', es:'es', fr:'fr', de:'de', pt:'pt' };
+  return map[nav] || 'en';
+}
+
+// ── Apply translations ──────────────────────────────────────────────────────
+function applyLang(lang) {
+  var d = I18N[lang] || I18N.en;
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  localStorage.setItem('eodi_lang', lang);
+  document.getElementById('lang-switcher').value = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (d[key] !== undefined) el.textContent = d[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (d[key] !== undefined) el.innerHTML = d[key];
+  });
+
+  // Update billing period label based on current selection
+  var periodKey = 'pro_period_' + currentBilling;
+  var periodEl = document.getElementById('period-pro');
+  if (periodEl && d[periodKey]) periodEl.textContent = d[periodKey];
+}
+
+function setLang(lang) {
+  applyLang(lang);
+}
+
+// ── Billing toggle ──────────────────────────────────────────────────────────
+function setBilling(cycle) {
+  currentBilling = cycle;
+  ['monthly','annual','lifetime'].forEach(function(c) {
+    var btn = document.getElementById('btn-' + c);
+    btn.className = 'toggle-btn' + (c === cycle ? ' active' : '');
+    btn.setAttribute('aria-pressed', c === cycle ? 'true' : 'false');
+  });
+  document.getElementById('price-pro').textContent = prices[cycle];
+  document.getElementById('buy-pro').href = buyLinks[cycle];
+
+  var d = I18N[currentLang] || I18N.en;
+  var periodKey = 'pro_period_' + cycle;
+  document.getElementById('period-pro').textContent = d[periodKey] || '';
+
+  var lb = document.getElementById('lifetime-best-value');
+  var pb = document.getElementById('pro-popular');
+  if (lb) lb.style.display = cycle === 'lifetime' ? 'block' : 'none';
+  if (pb) pb.style.display  = cycle === 'lifetime' ? 'none'  : 'block';
+}
+
+// ── Init ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  applyLang(detectLang());
+});
 </script>
 
 </body>
