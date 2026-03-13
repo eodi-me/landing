@@ -2,16 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- English (default) -->
   <url>
     <loc>https://eodi.me/</loc>
-    <lastmod>2025-06-01</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
   </url>
 
+  <!-- Korean -->
+  <url>
+    <loc>https://eodi.me/ko/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- Japanese -->
+  <url>
+    <loc>https://eodi.me/ja/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- Chinese -->
+  <url>
+    <loc>https://eodi.me/zh/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- Spanish -->
+  <url>
+    <loc>https://eodi.me/es/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- French -->
+  <url>
+    <loc>https://eodi.me/fr/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- German -->
+  <url>
+    <loc>https://eodi.me/de/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- Portuguese -->
+  <url>
+    <loc>https://eodi.me/pt/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://eodi.me/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://eodi.me/ko/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://eodi.me/ja/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://eodi.me/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://eodi.me/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eodi.me/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://eodi.me/de/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://eodi.me/pt/" />
+  </url>
+
+  <!-- Other pages -->
   <url>
     <loc>https://eodi.me/download</loc>
-    <lastmod>2025-06-01</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
