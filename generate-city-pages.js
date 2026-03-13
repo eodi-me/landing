@@ -65,19 +65,22 @@ const DIMS = [
   { key: 'commerce',  icon: '🛍️', label: 'Commerce' },
 ];
 
-// ── 스코어 색상 ──────────────────────────────────────────────────
-function scoreColor(v) {
-  if (v >= 70) return '#00CF95';
-  if (v >= 45) return '#FFB000';
-  return '#FF6B6B';
+// ── 밀도 레이블 ──────────────────────────────────────────────────
+function densityLabel(v) {
+  if (v >= 80) return 'Very Dense';
+  if (v >= 60) return 'Dense';
+  if (v >= 38) return 'Moderate';
+  if (v >= 18) return 'Sparse';
+  return 'Very Sparse';
 }
 
-// ── 진행 바 HTML ─────────────────────────────────────────────────
-function barHtml(value, color) {
-  return `
-    <div class="bar-track">
-      <div class="bar-fill" style="width:${value}%;background:${color};"></div>
-    </div>`;
+function densityColor(v) {
+  if (v >= 80) return '#00CF95';
+  if (v >= 60) return '#34d399';
+  if (v >= 38) return '#FFB000';
+  if (v >= 18) return '#FF9F0A';
+  return '#8E8E93';
+}
 }
 
 // ── 도시 페이지 HTML 생성 ────────────────────────────────────────
@@ -98,7 +101,8 @@ function generatePage(city) {
 
   const dimsHtml = hasRadar ? DIMS.map((d, i) => {
     const val   = radar[i] ?? 0;
-    const color = scoreColor(val);
+    const color = densityColor(val);
+    const label = densityLabel(val);
     return `
       <div class="dim-row">
         <div class="dim-label">
@@ -107,16 +111,12 @@ function generatePage(city) {
         </div>
         <div class="dim-right">
           ${barHtml(val, color)}
-          <span class="dim-val" style="color:${color}">${val}%</span>
+          <span class="dim-val" style="color:${color}">${label}</span>
         </div>
       </div>`;
   }).join('') : '<p class="no-data">Vibe data not yet available for this city.</p>';
 
-  const scoreHtml = overallScore !== null ? `
-    <div class="score-badge" style="color:${scoreColor(overallScore)}">
-      <span class="score-num">${overallScore}</span>
-      <span class="score-label">/ 100</span>
-    </div>` : '';
+  const scoreHtml = ''; // overall score removed — density labels per dimension are sufficient
 
   return { slug, countrySlug, html: `<!DOCTYPE html>
 <html lang="en">
